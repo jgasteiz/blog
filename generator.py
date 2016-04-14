@@ -43,12 +43,25 @@ class BlogGenerator(object):
         for file_path in self.get_content_files():
             # Get the blog post content in html
             blog_post_file = open(file_path, 'r')
+
+            # TODO: do this nicely
+            post_title = blog_post_file.readline().replace('Title:', '')
+            post_date = blog_post_file.readline().replace('Date:', '')
+
             md_content = blog_post_file.read()
             html_content = self.get_html_from_md(md_content)
 
             # Append the blog post content to the main soup.
             article_soup = self.get_post_html_soup().find('article')
-            article_soup.append(self.get_content_html_soup(html_content))
+
+            article_title_soup = article_soup.find(attrs={'class': 'blog-post__title'})
+            article_date_soup = article_soup.find(attrs={'class': 'blog-post__date'})
+            article_content_soup = article_soup.find(attrs={'class': 'blog-post__content'})
+
+            article_title_soup.append(post_title)
+            article_date_soup.append(post_date)
+            article_content_soup.append(self.get_content_html_soup(html_content))
+
             main_content.append(article_soup)
             blog_post_file.close()
 
