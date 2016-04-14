@@ -2,7 +2,7 @@ image: python:2.7-alpine
 
 pages:
   script:
-    - echo 'There is no need for this'
+    - python test.py
   artifacts:
     paths:
     - public
