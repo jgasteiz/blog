@@ -7,7 +7,7 @@ base_html_file = open('base/index.html', 'r')
 soup = BeautifulSoup(base_html_file.read(), 'html.parser')
 
 # Find the main content container
-main_content = soup.find(id="main-content")
+main_content = soup.find(id="main")
 
 # Turn the content into html and append it to the main content.
 for blog_post_file in os.listdir("./blog_posts"):
