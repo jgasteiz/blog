@@ -2,6 +2,7 @@ import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 import markdown
+from slugify import slugify
 
 
 class BlogGenerator(object):
@@ -35,10 +36,14 @@ class BlogGenerator(object):
     def get_html_from_md(self, html_content):
         return markdown.markdown(html_content)
 
-    def generate_output_html(self):
+    def generate_output(self):
         # Find the main content container
         main_soup = self.get_base_html_soup()
         main_content = main_soup.find(id="main")
+
+        result = {
+            'pages': []
+        }
 
         # Turn the content into html and append it to the main content.
         for file_path in self.get_content_files():
@@ -64,7 +69,21 @@ class BlogGenerator(object):
             article_date_soup.append(post_date)
             article_content_soup.append(self.get_content_html_soup(html_content))
 
-            main_content.append(article_soup)
+            main_content.append(BeautifulSoup(str(article_soup), self.parser))
+
+            # Create a detail page
+            detail_soup = self.get_base_html_soup()
+            detail_content = detail_soup.find(id="main")
+            detail_content.append(BeautifulSoup(str(article_soup), self.parser))
+            result['pages'].append({
+                'slug': slugify(post_title),
+                'html': str(detail_soup)
+            })
+
+            # Close the md file.
             blog_post_file.close()
 
-        return str(main_soup)
+        # Add the main html file to the result.
+        result['index_html'] = str(main_soup)
+
+        return result
