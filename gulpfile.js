@@ -1,7 +1,17 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    server = require('gulp-server-livereload');
+
+gulp.task('webserver', function() {
+    gulp.src('public')
+        .pipe(server({
+            livereload: true,
+            directoryListing: false,
+            open: true
+        }));
+});
 
 gulp.task('sass', function () {
   return gulp.src('./static/scss/**/*.scss')
@@ -13,4 +23,4 @@ gulp.task('sass:watch', function () {
   gulp.watch('./static/scss/**/*', ['sass']);
 });
 
-gulp.task('default', ['sass', 'sass:watch']);
+gulp.task('default', ['sass', 'sass:watch', 'webserver']);
