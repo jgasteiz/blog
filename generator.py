@@ -1,5 +1,6 @@
 import os
 from bs4 import BeautifulSoup
+from datetime import datetime
 import markdown
 
 
@@ -44,9 +45,10 @@ class BlogGenerator(object):
             # Get the blog post content in html
             blog_post_file = open(file_path, 'r')
 
-            # TODO: do this nicely
-            post_title = blog_post_file.readline().replace('Title:', '')
-            post_date = blog_post_file.readline().replace('Date:', '')
+            # Get the post date and title
+            post_title = blog_post_file.readline().strip('Title:').strip('\n').strip()
+            post_date = blog_post_file.readline().strip('Date:').strip('\n').strip()
+            post_date = datetime.strptime(post_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
 
             md_content = blog_post_file.read()
             html_content = self.get_html_from_md(md_content)
