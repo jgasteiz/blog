@@ -67,4 +67,4 @@ class BlogGenerator(object):
             main_content.append(article_soup)
             blog_post_file.close()
 
-        return unicode(main_soup)
+        return str(main_soup)
