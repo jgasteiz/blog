@@ -2,8 +2,7 @@ image: python:2.7-alpine
 
 pages:
   script:
-    - pip install -r requirements.txt
-    - python run.py
+    - python test.py
   artifacts:
     paths:
     - public
