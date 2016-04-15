@@ -26,9 +26,9 @@ class BlogGenerator(object):
 
     def get_content_files(self):
         content_files = []
-        for blog_post_file in os.listdir(self.content_path):
-            if blog_post_file.endswith(".md"):
-                content_files.append('{}/{}'.format(self.content_path, blog_post_file))
+        for article_file in os.listdir(self.content_path):
+            if article_file.endswith(".md"):
+                content_files.append('{}/{}'.format(self.content_path, article_file))
 
         content_files.reverse()
         return content_files
@@ -36,54 +36,65 @@ class BlogGenerator(object):
     def get_html_from_md(self, html_content):
         return markdown.markdown(html_content)
 
-    def generate_output(self):
+    def get_article(self, article_file_path, include_title_link):
+        # Get the blog post content in html
+        article_file = open(article_file_path, 'r')
+
+        # Get the post date and title from the md file.
+        article_title = article_file.readline().strip('Title:').strip('\n').strip()
+        article_date = article_file.readline().strip('Date:').strip('\n').strip()
+        article_date = datetime.strptime(article_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
+        # Get the rest of the content from the md file.
+        md_content = article_file.read()
+        article_content = self.get_html_from_md(md_content)
+        # Close the md file.
+        article_file.close()
+
+        # Get the article from the template and populate the title, date and content.
+        article = self.get_post_html_soup().find('article')
+
+        article_title_element = article.find(attrs={'class': 'blog-post__title'})
+        if include_title_link:
+            article_title_anchor = self.get_base_html_soup().new_tag(
+                'a', href='{}.html'.format(slugify(article_title)))
+            article_title_anchor.append(article_title)
+            article_title_element.append(article_title_anchor)
+        else:
+            article_title_element.append(article_title)
+
+        article.find(attrs={'class': 'blog-post__date'}).append(article_date)
+        article.find(attrs={'class': 'blog-post__content'}).append(
+            self.get_content_html_soup(article_content)
+        )
+
+        return article, article_title
+
+    def generate(self):
         # Find the main content container
         main_soup = self.get_base_html_soup()
         main_content = main_soup.find(id="main")
 
-        result = {
-            'pages': []
-        }
-
-        # Turn the content into html and append it to the main content.
+        # Generate detail pages
         for file_path in self.get_content_files():
-            # Get the blog post content in html
-            blog_post_file = open(file_path, 'r')
-
-            # Get the post date and title
-            post_title = blog_post_file.readline().strip('Title:').strip('\n').strip()
-            post_date = blog_post_file.readline().strip('Date:').strip('\n').strip()
-            post_date = datetime.strptime(post_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
-
-            md_content = blog_post_file.read()
-            html_content = self.get_html_from_md(md_content)
-
-            # Append the blog post content to the main soup.
-            article_soup = self.get_post_html_soup().find('article')
-
-            article_title_soup = article_soup.find(attrs={'class': 'blog-post__title'})
-            article_date_soup = article_soup.find(attrs={'class': 'blog-post__date'})
-            article_content_soup = article_soup.find(attrs={'class': 'blog-post__content'})
-
-            article_title_soup.append(post_title)
-            article_date_soup.append(post_date)
-            article_content_soup.append(self.get_content_html_soup(html_content))
-
-            main_content.append(BeautifulSoup(str(article_soup), self.parser))
+            article, article_title = self.get_article(file_path, include_title_link=False)
 
             # Create a detail page
             detail_soup = self.get_base_html_soup()
             detail_content = detail_soup.find(id="main")
-            detail_content.append(BeautifulSoup(str(article_soup), self.parser))
-            result['pages'].append({
-                'slug': slugify(post_title),
-                'html': str(detail_soup)
-            })
+            detail_content.append(BeautifulSoup(str(article), self.parser))
 
-            # Close the md file.
-            blog_post_file.close()
+            # Write the output detail html page.
+            output_html_file = open('public/{}.html'.format(slugify(article_title)), 'w')
+            output_html_file.write(str(detail_soup))
+            output_html_file.close()
 
-        # Add the main html file to the result.
-        result['index_html'] = str(main_soup)
+        # Generate general index page.
+        for file_path in self.get_content_files():
+            article, article_title = self.get_article(file_path, include_title_link=True)
 
-        return result
+            # Append the article to the main content.
+            main_content.append(BeautifulSoup(str(article), self.parser))
+
+        output_html_file = open('public/index.html', 'w')
+        output_html_file.write(str(main_soup))
+        output_html_file.close()
