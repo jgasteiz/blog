@@ -15,7 +15,7 @@ gulp.task('webserver', function() {
 
 gulp.task('sass', function () {
   return gulp.src('./static/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('./public/css'));
 });
 
