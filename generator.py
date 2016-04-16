@@ -1,3 +1,4 @@
+import math
 import os
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -10,33 +11,42 @@ class BlogGenerator(object):
         self.base_path = base_path
         self.content_path = content_path
         self.parser = parser
+        self.page_size = 3
 
     def get_base_html_soup(self):
+        """
+        Create a BeautifulSoup object with the content of the base template.
+        """
         base_html_file = open('{}/index.html'.format(self.base_path), 'r')
         base_html = base_html_file.read()
         return BeautifulSoup(base_html, self.parser)
 
     def get_post_html_soup(self):
+        """
+        Create a BeautifulSoup object with the content of the post template.
+        """
         post_html_file = open('{}/post.html'.format(self.base_path), 'r')
         post_html = post_html_file.read()
         return BeautifulSoup(post_html, self.parser)
 
-    def get_content_html_soup(self, html_content):
-        return BeautifulSoup(html_content, self.parser)
-
     def get_content_files(self):
+        """
+        Get the list of md content files ordered by file name.
+        """
         content_files = []
         for article_file in os.listdir(self.content_path):
             if article_file.endswith(".md"):
                 content_files.append('{}/{}'.format(self.content_path, article_file))
-
+        content_files = sorted(content_files)
         content_files.reverse()
         return content_files
 
-    def get_html_from_md(self, html_content):
-        return markdown.markdown(html_content)
-
-    def get_article(self, article_file_path, include_title_link):
+    def get_article(self, article_file_path, include_title_link=False):
+        """
+        Get an article with the content of the given article file path.
+        The title will be a link to the article detail depending on
+        the value of `include_title_link`.
+        """
         # Get the blog post content in html
         article_file = open(article_file_path, 'r')
 
@@ -46,7 +56,7 @@ class BlogGenerator(object):
         article_date = datetime.strptime(article_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
         # Get the rest of the content from the md file.
         md_content = article_file.read()
-        article_content = self.get_html_from_md(md_content)
+        article_content = markdown.markdown(md_content)
         # Close the md file.
         article_file.close()
 
@@ -64,19 +74,27 @@ class BlogGenerator(object):
 
         article.find(attrs={'class': 'blog-post__date'}).append(article_date)
         article.find(attrs={'class': 'blog-post__content'}).append(
-            self.get_content_html_soup(article_content)
+            BeautifulSoup(article_content, self.parser)
         )
 
         return article, article_title
 
-    def generate(self):
-        # Find the main content container
-        main_soup = self.get_base_html_soup()
-        main_content = main_soup.find(id="main")
+    def get_articles_in_page(self, articles_list, page_num):
+        """
+        Get the articles in a given page for a given article list.
+        """
+        last_article_index = page_num * self.page_size
+        first_article_index = last_article_index - self.page_size
+        return articles_list[first_article_index:last_article_index]
 
+    def generate(self):
+        """
+        Main function, generate the main index.html files and a detail html
+        file per blog post.
+        """
         # Generate detail pages
         for file_path in self.get_content_files():
-            article, article_title = self.get_article(file_path, include_title_link=False)
+            article, article_title = self.get_article(file_path)
 
             # Create a detail page
             detail_soup = self.get_base_html_soup()
@@ -88,13 +106,28 @@ class BlogGenerator(object):
             output_html_file.write(str(detail_soup))
             output_html_file.close()
 
-        # Generate general index page.
+        # Generate the articles for the index page.
+        all_articles = []
         for file_path in self.get_content_files():
-            article, article_title = self.get_article(file_path, include_title_link=True)
+            article, _ = self.get_article(file_path, include_title_link=True)
+            all_articles.append(article)
 
-            # Append the article to the main content.
-            main_content.append(BeautifulSoup(str(article), self.parser))
+        # Generate an index.html per page.
+        num_pages = math.ceil(len(all_articles) / self.page_size)
+        for i in range(1, num_pages + 1):
+            # Find the main content container
+            main_soup = self.get_base_html_soup()
+            main_content = main_soup.find(id="main")
 
-        output_html_file = open('public/index.html', 'w')
-        output_html_file.write(str(main_soup))
-        output_html_file.close()
+            # Append the articles to the main content.
+            articles_to_append = self.get_articles_in_page(all_articles, i)
+            for article in articles_to_append:
+                main_content.append(BeautifulSoup(str(article), self.parser))
+
+            if i == 1:
+                output_html_file = open('public/index.html', 'w')
+            else:
+                output_html_file = open('public/page{}.html'.format(i), 'w')
+
+            output_html_file.write(str(main_soup))
+            output_html_file.close()
