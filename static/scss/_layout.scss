@@ -6,11 +6,20 @@
 
 #header {
     background: $light-grey;
+    margin-bottom: 20px;
 }
 
 #site-title,
 #site-subtitle {
-    margin-top: 0;
+    font-weight: 300;
+    margin: 0;
+}
+
+#site-title a {
+    color: #0D47A1;
+}
+#site-subtitle {
+    color: #8998EC;
 }
 
 #footer {
