@@ -1,7 +1,11 @@
 body {
-    font-family: 'PT Serif', Georgia, serif;
-    font-size: 16px;
+    font-family: $font-family;
+    font-size: $font-size;
     line-height: 1.4;
+
+    @include respond-to(lap) {
+        font-size: $font-size-large;
+    }
 }
 
 a {
@@ -16,6 +20,10 @@ a {
     }
 }
 
+p {
+    margin: 0 0 15px;
+}
+
 // Headings
 h1,
 h2,
@@ -25,22 +33,46 @@ h4 {
     margin: 0 0 20px;
 }
 h1 {
-    font-size: 32px;
+    font-size: $h1-size;
+
+    @include respond-to(lap) {
+        font-size: $h1-size-large;
+    }
 }
 h2 {
-    font-size: 26px;
+    font-size: $h2-size;
+
+    @include respond-to(lap) {
+        font-size: $h2-size-large;
+    }
 }
 h3 {
-    font-size: 22px;
+    font-size: $h3-size;
+
+    @include respond-to(lap) {
+        font-size: $h3-size-large;
+    }
 }
 h4 {
-    font-size: 18px;
+    font-size: $h4-size;
+
+    @include respond-to(lap) {
+        font-size: $h4-size-large;
+    }
 }
 h5 {
-    font-size: 17px;
+    font-size: $h5-size;
+
+    @include respond-to(lap) {
+        font-size: $h5-size-large;
+    }
 }
 h6 {
-    font-size: 16px;
+    font-size: $h6-size;
+
+    @include respond-to(lap) {
+        font-size: $h6-size-large;
+    }
 }
 
 // Images

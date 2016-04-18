@@ -16,10 +16,10 @@
 }
 
 #site-title a {
-    color: #0D47A1;
+    color: $blue;
 }
 #site-subtitle {
-    color: #8998EC;
+    color: $light-blue;
 }
 
 #footer {
@@ -31,17 +31,28 @@
     margin-bottom: 60px;
 }
 .blog-post__header {
-    align-items: baseline;
-    display: flex;
     margin-bottom: 30px;
+
+    @include respond-to(lap) {
+        align-items: baseline;
+        display: flex;
+    }
 }
 .blog-post__title,
 .blog-post__date {
-    width: 50%;
     margin: 0;
+
+    @include respond-to(lap) {
+        margin: 0;
+        width: 50%;
+    }
 }
 .blog-post__date {
     color: $dark-grey;
-    font-size: 20px;
+    font-size: $h3-size;
     text-align: right;
+
+    @include respond-to(lap) {
+        font-size: $h3-size-large;
+    }
 }

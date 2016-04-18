@@ -1,0 +1,5 @@
+@mixin respond-to($media) {
+    @if $media == "lap" {
+        @media only screen and (min-width: 620px) { @content; }
+    }
+}
