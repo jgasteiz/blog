@@ -117,7 +117,8 @@ class BlogGenerator(object):
         for i in range(1, num_pages + 1):
             # Find the main content container
             main_soup = self.get_base_html_soup()
-            main_content = main_soup.find(id="main")
+            main_content = main_soup.find(id='main')
+            pagination = main_soup.find(id='pagination')
 
             # Append the articles to the main content.
             articles_to_append = self.get_articles_in_page(all_articles, i)
@@ -128,6 +129,24 @@ class BlogGenerator(object):
                 output_html_file = open('public/index.html', 'w')
             else:
                 output_html_file = open('public/page{}.html'.format(i), 'w')
+
+            if num_pages > 1:
+                pagination.find(id='page-number').append(str(i))
+                pagination.find(id='num-pages').append(str(num_pages))
+
+                if i == 1:
+                    pagination.find(id='previous-page').extract()
+                elif i == 2:
+                    pagination.find(id='previous-page').attrs['href'] = 'index.html'
+                else:
+                    pagination.find(id='previous-page').attrs['href'] = 'page{}.html'.format(str(i - 1))
+
+                if num_pages > i:
+                    pagination.find(id='next-page').attrs['href'] = 'page{}.html'.format(str(i + 1))
+                else:
+                    pagination.find(id='next-page').extract()
+            else:
+                pagination.extract()
 
             output_html_file.write(str(main_soup))
             output_html_file.close()

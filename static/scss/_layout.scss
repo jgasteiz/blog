@@ -26,6 +26,21 @@
     background: $light-grey;
 }
 
+// Pagination
+#pagination {
+    text-align: right;
+}
+#previous-page,
+#next-page {
+    display: inline-block
+}
+#previous-page + #next-page {
+    &:before {
+        content: '|';
+        margin: 0 5px;
+    }
+}
+
 // Blog post
 .blog-post {
     margin-bottom: 60px;
