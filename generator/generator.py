@@ -7,11 +7,12 @@ from slugify import slugify
 
 
 class BlogGenerator(object):
-    def __init__(self, base_path, content_path, parser='html.parser'):
+    def __init__(self, base_path, content_path, output_path, page_size, parser='html.parser'):
         self.base_path = base_path
         self.content_path = content_path
+        self.output_path = output_path
         self.parser = parser
-        self.page_size = 3
+        self.page_size = page_size
 
     def get_base_html_soup(self):
         """
@@ -19,6 +20,7 @@ class BlogGenerator(object):
         """
         base_html_file = open('{}/index.html'.format(self.base_path), 'r')
         base_html = base_html_file.read()
+        base_html_file.close()
         return BeautifulSoup(base_html, self.parser)
 
     def get_post_html_soup(self):
@@ -27,6 +29,7 @@ class BlogGenerator(object):
         """
         post_html_file = open('{}/post.html'.format(self.base_path), 'r')
         post_html = post_html_file.read()
+        post_html_file.close()
         return BeautifulSoup(post_html, self.parser)
 
     def get_content_files(self):
@@ -102,7 +105,7 @@ class BlogGenerator(object):
             detail_content.append(BeautifulSoup(str(article), self.parser))
 
             # Write the output detail html page.
-            output_html_file = open('public/{}.html'.format(slugify(article_title)), 'w')
+            output_html_file = open('{}/{}.html'.format(self.output_path, slugify(article_title)), 'w')
             output_html_file.write(str(detail_soup))
             output_html_file.close()
 
@@ -126,9 +129,9 @@ class BlogGenerator(object):
                 main_content.append(BeautifulSoup(str(article), self.parser))
 
             if i == 1:
-                output_html_file = open('public/index.html', 'w')
+                output_html_file = open('{}/index.html'.format(self.output_path), 'w')
             else:
-                output_html_file = open('public/page{}.html'.format(i), 'w')
+                output_html_file = open('{}/page{}.html'.format(self.output_path, i), 'w')
 
             if num_pages > 1:
                 pagination.find(id='page-number').append(str(i))

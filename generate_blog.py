@@ -1,8 +1,13 @@
-from generator import BlogGenerator
+from generator.generator import BlogGenerator
 
 
 def main():
-    generator = BlogGenerator(base_path='./base', content_path='./blog_posts')
+    generator = BlogGenerator(
+        base_path='./base',
+        content_path='./blog_posts',
+        output_path='./public',
+        page_size=3,
+    )
     generator.generate()
 
 if __name__ == '__main__':
