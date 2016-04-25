@@ -11,11 +11,17 @@
 <link href="css/blog.css" rel="stylesheet">
 </link></link></link></meta></meta></meta></head>
 <body>
-<header id="header">
+<header class="header" id="header">
 <div class="container">
-<h1 id="site-title"><a href="/">Fuzzing the Web</a></h1>
-<h2 id="site-subtitle">A blog by Javi Manzano</h2>
+<h1 class="site-title" id="site-title"><a href="/">Fuzzing the Web</a></h1>
+<h2 class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</h2>
 </div>
+<nav class="navigation">
+<ul class="navigation__list">
+<li class="navigation__list-item"><a href="/">Home</a></li>
+<li class="navigation__list-item"><a href="/about.html">About</a></li>
+</ul>
+</nav>
 </header>
 <div class="container" id="main" role="main"><article class="blog-post">
 <div class="blog-post__header">
@@ -36,9 +42,9 @@
 <p><img alt="BBQ" src="https://lh6.googleusercontent.com/-F5XtRzhuq2o/U_CdVwyV-uI/AAAAAAAAQOU/QhH4SH8vk8M/w845-h634-no/IMG_20140816_155121.jpg"/></p>
 <p><img alt="BBQ2" src="https://lh4.googleusercontent.com/-0EgJrzdjMBM/U_CdfiOOXsI/AAAAAAAAQO4/_mnFlta-quo/w845-h634-no/IMG_20140816_155135.jpg"/></p></div>
 </article></div>
-<div class="container" id="pagination">
+<div class="pagination container" id="pagination">
 <p>Page <span id="page-number"></span> of <span id="num-pages"></span></p>
-<p><a href="" id="previous-page">Previous page</a><a href="" id="next-page">Next page</a></p>
+<p><a class="previous-page" href="" id="previous-page">Previous page</a><a class="next-page" href="" id="next-page">Next page</a></p>
 </div>
 <footer id="footer">
 <div class="container">

@@ -11,11 +11,17 @@
 <link href="css/blog.css" rel="stylesheet">
 </link></link></link></meta></meta></meta></head>
 <body>
-<header id="header">
+<header class="header" id="header">
 <div class="container">
-<h1 id="site-title"><a href="/">Fuzzing the Web</a></h1>
-<h2 id="site-subtitle">A blog by Javi Manzano</h2>
+<h1 class="site-title" id="site-title"><a href="/">Fuzzing the Web</a></h1>
+<h2 class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</h2>
 </div>
+<nav class="navigation">
+<ul class="navigation__list">
+<li class="navigation__list-item"><a href="/">Home</a></li>
+<li class="navigation__list-item"><a href="/about.html">About</a></li>
+</ul>
+</nav>
 </header>
 <div class="container" id="main" role="main"><article class="blog-post">
 <div class="blog-post__header">
@@ -41,9 +47,9 @@ of the knowledge before I forget about it.</p>
 <li>BeautifulSoup 4</li>
 </ul></div>
 </article></div>
-<div class="container" id="pagination">
+<div class="pagination container" id="pagination">
 <p>Page <span id="page-number"></span> of <span id="num-pages"></span></p>
-<p><a href="" id="previous-page">Previous page</a><a href="" id="next-page">Next page</a></p>
+<p><a class="previous-page" href="" id="previous-page">Previous page</a><a class="next-page" href="" id="next-page">Next page</a></p>
 </div>
 <footer id="footer">
 <div class="container">

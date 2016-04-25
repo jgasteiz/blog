@@ -11,16 +11,22 @@
     <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
-    <header id="header">
+    <header id="header" class="header">
         <div class="container">
-            <h1 id="site-title"><a href="/">Fuzzing the Web</a></h1>
-            <h2 id="site-subtitle">A blog by Javi Manzano</h2>
+            <h1 id="site-title" class="site-title"><a href="/">Fuzzing the Web</a></h1>
+            <h2 id="site-subtitle" class="site-subtitle">A blog by Javi Manzano</h2>
         </div>
+        <nav class="navigation">
+            <ul class="navigation__list">
+                <li class="navigation__list-item"><a href="/">Home</a></li>
+                <li class="navigation__list-item"><a href="/about.html">About</a></li>
+            </ul>
+        </nav>
     </header>
     <div role="main" id="main" class="container"></div>
-    <div id="pagination" class="container">
+    <div id="pagination" class="pagination container">
         <p>Page <span id="page-number"></span> of <span id="num-pages"></span></p>
-        <p><a id="previous-page" href="">Previous page</a><a id="next-page" href="">Next page</a></p>
+        <p><a id="previous-page" class="previous-page" href="">Previous page</a><a id="next-page" class="next-page" href="">Next page</a></p>
     </div>
     <footer id="footer">
         <div class="container">
