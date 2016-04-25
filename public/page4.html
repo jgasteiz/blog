@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Fuzzing the Web</title>
+<link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="css/blog.css" rel="stylesheet">
+</link></link></link></meta></meta></meta></head>
+<body>
+<header class="header" id="header">
+<div class="container">
+<h1 class="site-title" id="site-title"><a href="/">Fuzzing the Web</a></h1>
+<h2 class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</h2>
+</div>
+<nav class="navigation">
+<ul class="navigation__list">
+<li class="navigation__list-item"><a href="/">Home</a></li>
+<li class="navigation__list-item"><a href="/about.html">About</a></li>
+</ul>
+</nav>
+</header>
+<div class="container" id="main" role="main"><article class="blog-post">
+<div class="blog-post__header">
+<h1 class="blog-post__title"><a href="iterm2-word-jumping.html">iTerm2 word jumping</a></h1>
+<span class="blog-post__date">Tuesday, 13 May 2014</span>
+</div>
+<div class="blog-post__content"><p>I’m so tired of looking for posts about jumping/deleting words and jumping between the beginning and the end of the line in iTerm2, that I’ve decided to write my own post.</p>
+<h3>Word jumping – with option + left/right</h3>
+<ul>
+<li>Go to iTerm preferences –&gt; "your default profile" –&gt; Keys</li>
+<li>get rid of the lines with the two lines sending escape codes with option + left/right</li>
+<li>Add a couple of lines in iTerm preferences –&gt; Keys (Global Shortcut keys)<ul>
+<li>option + left: Send Escape Sequence, ESC + B</li>
+<li>option + right: Send Escape Sequence, ESC + F</li>
+</ul>
+</li>
+</ul>
+<h3>Word deletion – with option + backspace</h3>
+<p>Add a line in iTerm preferences –&gt; Keys (Global Shortcut keys):</p>
+<ul>
+<li>option + backspace: Send Hex Code, 0x1B 0x08</li>
+</ul>
+<h3>Jump to the beginning/end of a line – with cmd + left/right</h3>
+<p>Add a couple of lines in iTerm preferences –&gt; Keys (Global Shortcut keys):</p>
+<ul>
+<li>cmd + left: Send Hex Code, 0x01</li>
+<li>cmd + right: Send Hex Code, 0x05</li>
+</ul>
+<p>Check the following screenshot for more details:</p>
+<p><img alt="Screen shot" src="https://lh3.googleusercontent.com/-i9gBv_w7PkE/U3IUEQ8mUUI/AAAAAAAAO9U/8oUtFFLcSiI/w922-h539-no/Screen+Shot+2014-05-13+at+13.45.12.png"/></p></div>
+</article><article class="blog-post">
+<div class="blog-post__header">
+<h1 class="blog-post__title"><a href="hendon-cemetery.html">Hendon Cemetery</a></h1>
+<span class="blog-post__date">Wednesday, 22 January 2014</span>
+</div>
+<div class="blog-post__content"><p>A few pictures from this Sunday, when Madga dragged me out of the bed to visit Hendon Cemetery. Not the most common spot to visit on a weekend, but it was close from home and we the weekend laziness was on us.</p>
+<p><img alt="Angel" src="https://farm8.staticflickr.com/7440/12040273675_c50a27d9f9_c.jpg"/><br/>
+<em>This first one was taken by Magda.</em></p>
+<p><img alt="Church" src="https://farm6.staticflickr.com/5490/12040668954_fd4bde62f7_c.jpg"/></p>
+<p><img alt="Windmill" src="https://farm4.staticflickr.com/3670/12040585163_b6ae8fbb3c_c.jpg"/></p>
+<p><img alt="Magda" src="https://farm8.staticflickr.com/7367/12040654343_89385bde19_c.jpg"/></p></div>
+</article><article class="blog-post">
+<div class="blog-post__header">
+<h1 class="blog-post__title"><a href="ready-player-one-ernest-cline.html">Ready Player One - Ernest Cline</a></h1>
+<span class="blog-post__date">Thursday, 16 January 2014</span>
+</div>
+<div class="blog-post__content"><p>The year is 2044. The Great Recession, the one we have now, is still there and a huge energy crisis has joined it. Real Life™ sucks, but fortunately there is a virtual reality, much better than reality itself, called OASIS. And the access is free.</p>
+<p>One day, the creator of this OASIS dies and leaves a last will: he has hidden 3 keys or <em>Easter Eggs</em> in the OASIS and the one who finds the three of them, will inherit all his fortune and the control of the OASIS.</p>
+<p>After that happens loads of people, gunters from now on - Egg hunters -, will start looking for the keys. The creator of the OASIS was known to be a fanatic of the 80s pop culture and in order to understand the riddles he left behind and find the keys, every gunter will have to become an expert in the matter.</p>
+<p>The book is full of references to videogames, movies, books, comic books, more videogames, tv series and everything you can imagine from the 80s. So everyone who still remembers how the 80s were or even the early 90s, will probably enjoy this book.</p>
+<p><img alt="Ready Player One book cover" src="https://lh3.googleusercontent.com/-YdFbA5XSEOU/UtegebtvQAI/AAAAAAAANqw/hsThl61Q1DA/w829-h649-no/small_background.jpg"/></p></div>
+</article></div>
+<div class="pagination container" id="pagination">
+<p>Page <span id="page-number">4</span> of <span id="num-pages">5</span></p>
+<p><a class="previous-page" href="page3.html" id="previous-page">Previous page</a><a class="next-page" href="page5.html" id="next-page">Next page</a></p>
+</div>
+<footer class="footer" id="footer">
+<div class="container">
+<p>Hosted in <a href="http://pages.gitlab.io/" target="_blank">Gitlab pages</a>.</p>
+<p>Static blog written in Python. <a href="https://gitlab.com/jgasteiz/jgasteiz.gitlab.io" target="_blank">Code here</a>.</p>
+</div>
+</footer>
+</body>
+</html>
