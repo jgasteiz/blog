@@ -1,7 +1,11 @@
 .container {
     margin: 0 auto;
     max-width: $site-width;
-    padding: 20px;
+    padding: $gutter-sm;
+
+    @include respond-to(lap) {
+        padding: 20px $gutter;
+    }
 }
 
 .header {
@@ -55,36 +59,5 @@
     &:before {
         content: '|';
         margin: 0 5px;
-    }
-}
-
-// Blog post
-.blog-post {
-    margin-bottom: 60px;
-}
-.blog-post__header {
-    margin-bottom: 30px;
-
-    @include respond-to(lap) {
-        align-items: baseline;
-        display: flex;
-    }
-}
-.blog-post__title,
-.blog-post__date {
-    margin: 0;
-
-    @include respond-to(lap) {
-        margin: 0;
-        width: 50%;
-    }
-}
-.blog-post__date {
-    color: $dark-grey;
-    font-size: $h3-size;
-    text-align: right;
-
-    @include respond-to(lap) {
-        font-size: $h3-size-large;
     }
 }

@@ -23,6 +23,15 @@ class BlogGenerator(object):
         base_html_file.close()
         return BeautifulSoup(base_html, self.parser)
 
+    def get_about_html_soup(self):
+        """
+        Create a BeautifulSoup object with the content of the about template.
+        """
+        about_html_file = open('{}/about.html'.format(self.base_path), 'r')
+        about_html = about_html_file.read()
+        about_html_file.close()
+        return BeautifulSoup(about_html, self.parser)
+
     def get_post_html_soup(self):
         """
         Create a BeautifulSoup object with the content of the post template.
@@ -90,17 +99,14 @@ class BlogGenerator(object):
         first_article_index = last_article_index - self.page_size
         return articles_list[first_article_index:last_article_index]
 
-    def generate(self):
-        """
-        Main function, generate the main index.html files and a detail html
-        file per blog post.
-        """
+    def generate_detail_pages(self):
         # Generate detail pages
         for file_path in self.get_content_files():
             article, article_title = self.get_article(file_path)
 
             # Create a detail page
             detail_soup = self.get_base_html_soup()
+            detail_soup.find(id='pagination').extract()
             detail_content = detail_soup.find(id="main")
             detail_content.append(BeautifulSoup(str(article), self.parser))
 
@@ -109,6 +115,7 @@ class BlogGenerator(object):
             output_html_file.write(str(detail_soup))
             output_html_file.close()
 
+    def generate_main_pages(self):
         # Generate the articles for the index page.
         all_articles = []
         for file_path in self.get_content_files():
@@ -153,3 +160,24 @@ class BlogGenerator(object):
 
             output_html_file.write(str(main_soup))
             output_html_file.close()
+
+    def generate_about_page(self):
+        # Generate the about.html
+        about_content = self.get_about_html_soup().find('article')
+
+        about_soup = self.get_base_html_soup()
+        about_soup.find(id='pagination').extract()
+        about_soup.find(id='main').append(BeautifulSoup(str(about_content), self.parser))
+
+        output_html_file = open('{}/about.html'.format(self.output_path), 'w')
+        output_html_file.write(str(about_soup))
+        output_html_file.close()
+
+    def generate(self):
+        """
+        Main function, generate the main index.html files and a detail html
+        file per blog post.
+        """
+        self.generate_detail_pages()
+        self.generate_main_pages()
+        self.generate_about_page()

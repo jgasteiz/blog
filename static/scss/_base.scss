@@ -22,13 +22,24 @@ p {
     margin: 0 0 15px;
 }
 
+ul {
+    padding: 0 0 0 20px;
+}
+
 // Headings
 h1,
 h2,
 h3,
 h4 {
     line-height: 1.4;
+}
+h1,
+h2 {
     margin: 0 0 20px;
+}
+h3,
+h4 {
+    margin: 0 0 10px;
 }
 h1 {
     font-size: $h1-size;
@@ -71,6 +82,12 @@ h6 {
     @include respond-to(lap) {
         font-size: $h6-size-large;
     }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 40px 0;
 }
 
 // Images

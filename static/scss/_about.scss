@@ -1,0 +1,13 @@
+.about__skill-list {
+    @include respond-to(lap) {
+        display: flex;
+        margin-left: -$gutter;
+    }
+}
+
+.about__skill {
+    @include respond-to(lap) {
+        flex: 1;
+        padding-left: $gutter;
+    }
+}
