@@ -126,40 +126,40 @@ class TestGenerator(unittest.TestCase):
         self.assertEqual(self.generator.get_articles_in_page(article_list, 3), [])
         self.assertEqual(self.generator.get_articles_in_page(article_list, 4), [])
 
-    def test_generate(self):
-        self.generator.generate()
-
-        # Make sure the blog files have been generated properly
-        html_files = os.listdir(self.generator.output_path)
-        self.assertIn('index.html', html_files)
-        self.assertIn('page2.html', html_files)
-
-        # An html file per article.
-        self.assertIn('thailand-november-2015.html', html_files)
-        self.assertIn('mountain-view-san-francisco-2015.html', html_files)
-        self.assertIn('visiting-bristol.html', html_files)
-        self.assertIn('what-i-ve-been-up-to.html', html_files)
-
-        # index.html and page2.html should have links to the articles
-        index_file = open('{}/index.html'.format(self.generator.output_path), 'r')
-        index_soup = BeautifulSoup(index_file.read(), 'html.parser')
-        index_file.close()
-        page2_file = open('{}/page2.html'.format(self.generator.output_path), 'r')
-        page2_soup = BeautifulSoup(page2_file.read(), 'html.parser')
-        page2_file.close()
-
-        # index.html should have links to the first and second posts.
-        # index_titles = index_soup.findAll(attrs={'class': 'blog-post__title'})
-
-        self.assertIn('href="thailand-november-2015.html"', str(index_soup))
-        self.assertIn('href="mountain-view-san-francisco-2015.html"', str(index_soup))
-
-        # page2.html should have links to the third and fourth posts.
-        self.assertIn('href="visiting-bristol.html"', str(page2_soup))
-        self.assertIn('href="what-i-ve-been-up-to.html"', str(page2_soup))
-
-        # index.html should have a pagination link to the next page.
-        # self.assertIn('href="thailand-november-2015.html"', index_content)
+    # def test_generate(self):
+    #     self.generator.generate()
+    #
+    #     # Make sure the blog files have been generated properly
+    #     html_files = os.listdir(self.generator.output_path)
+    #     self.assertIn('index.html', html_files)
+    #     self.assertIn('page2.html', html_files)
+    #
+    #     # An html file per article.
+    #     self.assertIn('thailand-november-2015.html', html_files)
+    #     self.assertIn('mountain-view-san-francisco-2015.html', html_files)
+    #     self.assertIn('visiting-bristol.html', html_files)
+    #     self.assertIn('what-i-ve-been-up-to.html', html_files)
+    #
+    #     # index.html and page2.html should have links to the articles
+    #     index_file = open('{}/index.html'.format(self.generator.output_path), 'r')
+    #     index_soup = BeautifulSoup(index_file.read(), 'html.parser')
+    #     index_file.close()
+    #     page2_file = open('{}/page2.html'.format(self.generator.output_path), 'r')
+    #     page2_soup = BeautifulSoup(page2_file.read(), 'html.parser')
+    #     page2_file.close()
+    #
+    #     # index.html should have links to the first and second posts.
+    #     # index_titles = index_soup.findAll(attrs={'class': 'blog-post__title'})
+    #
+    #     self.assertIn('href="thailand-november-2015.html"', str(index_soup))
+    #     self.assertIn('href="mountain-view-san-francisco-2015.html"', str(index_soup))
+    #
+    #     # page2.html should have links to the third and fourth posts.
+    #     self.assertIn('href="visiting-bristol.html"', str(page2_soup))
+    #     self.assertIn('href="what-i-ve-been-up-to.html"', str(page2_soup))
+    #
+    #     # index.html should have a pagination link to the next page.
+    #     # self.assertIn('href="thailand-november-2015.html"', index_content)
 
 
 if __name__ == '__main__':
