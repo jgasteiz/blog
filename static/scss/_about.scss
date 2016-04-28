@@ -1,3 +1,11 @@
+.about__header {
+    margin: 0 0 60px;
+}
+.about__content,
+.about__footer {
+    margin-bottom: 40px;
+}
+
 .about__skill-list {
     @include respond-to(lap) {
         display: flex;
