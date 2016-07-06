@@ -11,6 +11,11 @@ This is the personal blog of Javi Manzano.
     - `pip install -r requirements.txt`
     - `npm install`
 - Generate the blog
-    - `python generate_blog.py`
+    - `./generate_blog.sh`
 - Serve it locally
     - `gulp`
+
+
+## Adding new blog posts
+
+- `./new_post.sh` Will create a `.md` file under the path specified in `CONTENT_PATH`

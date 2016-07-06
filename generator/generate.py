@@ -1,4 +1,4 @@
-from generator import BlogGenerator
+from blog_generator import BlogGenerator
 from settings import (
     BASE_PATH,
     CONTENT_PATH,
