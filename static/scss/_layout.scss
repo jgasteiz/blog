@@ -51,6 +51,10 @@
 
 .footer {
     background: $light-grey;
+
+    p {
+        margin: 0;
+    }
 }
 
 // Pagination
