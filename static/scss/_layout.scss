@@ -1,7 +1,12 @@
+[role="main"] {
+    flex-grow: 1;
+}
+
 .container {
     margin: 0 auto;
-    max-width: $site-width;
+    max-width: 100%;
     padding: $gutter-sm;
+    width: $site-width;
 
     @include respond-to(lap) {
         padding: 20px $gutter;

@@ -109,6 +109,7 @@ class BlogGenerator(object):
             detail_soup.find(id='pagination').extract()
             detail_content = detail_soup.find(id="main")
             detail_content.append(BeautifulSoup(str(article), self.parser))
+            detail_soup.find(name='title').string = '{} | {}'.format(article_title, detail_soup.find(name='title').text)
 
             # Write the output detail html page.
             output_html_file = open('{}/{}.html'.format(self.output_path, slugify(article_title)), 'w')
