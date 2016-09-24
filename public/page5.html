@@ -13,8 +13,9 @@
 <body>
 <header class="header" id="header">
 <div class="container">
+<div class="profile-picture"></div>
 <h1 class="site-title" id="site-title"><a href="/">Fuzzing the Web</a></h1>
-<h2 class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</h2>
+<span class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</span>
 </div>
 <nav class="navigation">
 <ul class="navigation__list">
@@ -24,6 +25,35 @@
 </nav>
 </header>
 <div class="container" id="main" role="main"><article class="blog-post">
+<div class="blog-post__header">
+<h1 class="blog-post__title"><a href="iterm2-word-jumping.html">iTerm2 word jumping</a></h1>
+<span class="blog-post__date">Tuesday, 13 May 2014</span>
+</div>
+<div class="blog-post__content"><p>I’m so tired of looking for posts about jumping/deleting words and jumping between the beginning and the end of the line in iTerm2, that I’ve decided to write my own post.</p>
+<h3>Word jumping – with option + left/right</h3>
+<ul>
+<li>Go to iTerm preferences –&gt; "your default profile" –&gt; Keys</li>
+<li>get rid of the lines with the two lines sending escape codes with option + left/right</li>
+<li>Add a couple of lines in iTerm preferences –&gt; Keys (Global Shortcut keys)<ul>
+<li>option + left: Send Escape Sequence, ESC + B</li>
+<li>option + right: Send Escape Sequence, ESC + F</li>
+</ul>
+</li>
+</ul>
+<h3>Word deletion – with option + backspace</h3>
+<p>Add a line in iTerm preferences –&gt; Keys (Global Shortcut keys):</p>
+<ul>
+<li>option + backspace: Send Hex Code, 0x1B 0x08</li>
+</ul>
+<h3>Jump to the beginning/end of a line – with cmd + left/right</h3>
+<p>Add a couple of lines in iTerm preferences –&gt; Keys (Global Shortcut keys):</p>
+<ul>
+<li>cmd + left: Send Hex Code, 0x01</li>
+<li>cmd + right: Send Hex Code, 0x05</li>
+</ul>
+<p>Check the following screenshot for more details:</p>
+<p><img alt="Screen shot" src="https://lh3.googleusercontent.com/-i9gBv_w7PkE/U3IUEQ8mUUI/AAAAAAAAO9U/8oUtFFLcSiI/w922-h539-no/Screen+Shot+2014-05-13+at+13.45.12.png"/></p></div>
+</article><article class="blog-post">
 <div class="blog-post__header">
 <h1 class="blog-post__title"><a href="hendon-cemetery.html">Hendon Cemetery</a></h1>
 <span class="blog-post__date">Wednesday, 22 January 2014</span>
@@ -44,19 +74,6 @@
 <p>After that happens loads of people, gunters from now on - Egg hunters -, will start looking for the keys. The creator of the OASIS was known to be a fanatic of the 80s pop culture and in order to understand the riddles he left behind and find the keys, every gunter will have to become an expert in the matter.</p>
 <p>The book is full of references to videogames, movies, books, comic books, more videogames, tv series and everything you can imagine from the 80s. So everyone who still remembers how the 80s were or even the early 90s, will probably enjoy this book.</p>
 <p><img alt="Ready Player One book cover" src="https://lh3.googleusercontent.com/-YdFbA5XSEOU/UtegebtvQAI/AAAAAAAANqw/hsThl61Q1DA/w829-h649-no/small_background.jpg"/></p></div>
-</article><article class="blog-post">
-<div class="blog-post__header">
-<h1 class="blog-post__title"><a href="back-for-christmas-turron-style.html">Back for Christmas - Turron style</a></h1>
-<span class="blog-post__date">Friday, 03 January 2014</span>
-</div>
-<div class="blog-post__content"><p>I'm back here since this Monday morning, that's one of the few and vague reasons I haven't written in a few days. That and Christmas excitement. New year's eve has been brutal this year. I can't remember a night as epic as this year's has been, hard to believe. Specially because I don't usually enjoy new year's eve at all.</p>
-<p>I brought the new camera to Spain and I've some time to spend learning the basics about it. After reading some book introductions and blog posts, I've got a common message from all of them: I should try to make tons of pictures. Apparently "learning by doing" is the best way of learning. Good stuff. I've also started uploading some of them to <a href="http://www.flickr.com/photos/jgasteiz/">my flickr account</a>.</p>
-<p><em>A couple of seconds of shutter speed in the darkness of my bedroom made the trick.</em></p>
-<p><img alt="vinyl" src="https://c2.staticflickr.com/4/3822/11719225215_4f406bfc08_b.jpg"/></p>
-<p><em>After reading one of the first chapters of <a href="http://www.ppsop.com/unex.aspx">Understanding Exposure, by Bryan Peterson</a>, I had the feeling of trying something the book explained about playing with values for getting cool exposures. For getting this, I've also changed some stuff in Lightroom.</em></p>
-<p><img alt="from my window" src="https://c1.staticflickr.com/1/775/20043955884_9f7ac9a567_b.jpg"/></p>
-<p>A tripod was used for both pictures, I got a cheap one the other day - I know, I know, none recommends cheap tripods. But I'm definitely not spending a lot on a tripod now, and 12 euros seemed quite reasonable for what I got. Better that than nothing, right?</p>
-<p>And that's all folks.</p></div>
 </article></div>
 <div class="pagination container" id="pagination">
 <p>Page <span id="page-number">5</span> of <span id="num-pages">6</span></p>
@@ -65,6 +82,7 @@
 <footer class="footer" id="footer">
 <div class="container">
 <p>Static blog written in Python by Javi Manzano. <a href="https://gitlab.com/jgasteiz/jgasteiz.gitlab.io" target="_blank">Code here</a>.</p>
+<p>Theme inspired by <a href="https://github.com/belen-albeza/hikari-no-ghost-theme">Hikari no Ghost</a>.</p>
 </div>
 </footer>
 <script>

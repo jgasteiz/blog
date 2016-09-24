@@ -9,13 +9,13 @@
     width: $site-width;
 
     @include respond-to(lap) {
-        padding: 20px $gutter;
+        padding: 24px $gutter;
     }
 }
 
 .header {
-    background: $light-grey;
-    margin-bottom: 20px;
+    background: $blue-grey;
+    margin-bottom: 24px;
 }
 
 .navigation {
@@ -31,29 +31,61 @@
     font-size: $font-size-large;
     margin-right: 16px;
 
+    a {
+      color: #fff;
+    }
+
     &:last-child {
         margin: 0;
     }
 }
 
+.profile-picture {
+    $size: 128px;
+    background-image: url("/images/fuzzy.jpg");
+    background-size: cover;
+    border: 4px solid #fff;
+    border-radius: $size / 2;
+    margin: 0 auto 24px;
+    width: $size;
+    height: $size;
+
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+        background-image: url("/images/fuzzy@2x.jpg");
+    }
+}
+
 .site-title,
 .site-subtitle {
+    display: block;
     font-weight: 300;
     margin: 0;
+    text-align: center;
 }
 
 .site-title a {
-    color: $text-color;
+    color: $light-grey;
 }
 .site-subtitle {
     color: $dark-grey;
+    font-size: 26px;
 }
 
 .footer {
     background: $light-grey;
 
     p {
-        margin: 0;
+        margin: 0 0 8px;
+
+        &:last-child {
+            margin: 0;
+        }
     }
 }
 
@@ -68,6 +100,6 @@
 .previous-page + .next-page {
     &:before {
         content: '|';
-        margin: 0 5px;
+        margin: 0 4px;
     }
 }

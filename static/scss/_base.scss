@@ -21,7 +21,7 @@ body {
 }
 
 a {
-    color: $blue;
+    color: $link-color;
     text-decoration: none;
 
     &:hover {
@@ -30,7 +30,7 @@ a {
 }
 
 p {
-    margin: 0 0 15px;
+    margin: 0 0 16px;
 }
 
 blockquote {
@@ -38,8 +38,8 @@ blockquote {
     color: #777;
     font-style: italic;
     font-weight: 600;
-    margin: 15px 0;
-    padding: 20px;
+    margin: 16px 0;
+    padding: 24px;
 
     p:last-child {
         margin-bottom: 0;
@@ -47,10 +47,10 @@ blockquote {
 }
 
 ul {
-    padding: 0 0 0 20px;
+    padding: 0 0 0 24px;
 }
 li {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
 }
 
 // Headings
@@ -58,15 +58,16 @@ h1,
 h2,
 h3,
 h4 {
+  color: $heading-color;
     line-height: 1.4;
 }
 h1,
 h2 {
-    margin: 0 0 20px;
+    margin: 0 0 24px;
 }
 h3,
 h4 {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
 }
 h1 {
     font-size: $h1-size;
