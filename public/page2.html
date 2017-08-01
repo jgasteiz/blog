@@ -16,6 +16,7 @@
 <div class="profile-picture"></div>
 <h1 class="site-title" id="site-title"><a href="/">Fuzzing the Web</a></h1>
 <span class="site-subtitle" id="site-subtitle">A blog by Javi Manzano</span>
+<span class="site-illustration" id="site-subtitle">Illustration by <a href="https://generofresco.wordpress.com/" target="_blank">Raquel K Agüesome</a></span>
 </div>
 <nav class="navigation">
 <ul class="navigation__list">
@@ -25,6 +26,37 @@
 </nav>
 </header>
 <div class="container" id="main" role="main"><article class="blog-post">
+<div class="blog-post__header">
+<h1 class="blog-post__title"><a href="password-managers.html">Password Managers</a></h1>
+<span class="blog-post__date">Saturday, 03 September 2016</span>
+</div>
+<div class="blog-post__content"><h2>The problem</h2>
+<p>For years, I've been the kind of person who always used the same three or four passwords for every single online service I used to have. Every time one of these services <a href="https://haveibeenpwned.com/">got hacked</a>, I was supposed to change the password I was using for that service and in every other service I was using that password. Obviously, I wasn't keeping track of that, so I used to miss many of them.</p>
+<p>Then 2-factor authentication* came to be and I started activating it for every service I considered important: Google, Amazon, Twitter, Facebook, Dropbox, Github, Gitlab... That made me feel much safer. But it had a couple of inconveniences:</p>
+<ol>
+<li>Not every service offers 2-factor authentication and not all of them would offer the SMS one, which is the one I chose.</li>
+<li>I would need my UK phone number with me all the time – this is a problem four or five times per year, when I go to Spain and Poland.</li>
+</ol>
+<blockquote>
+<p>2 Factor Authentication it's an extra layer of security that relies not only on the common user/password combination, but also on something you have with you. Most of the times, it's either an app on your phone generating security codes for the extra login step or this same kind of codes, but sent to you via SMS.</p>
+</blockquote>
+<p>Despite of that, I got used to it and it felt safe enough. At least for the last three years or so.</p>
+<p>Then a few days ago I got another email from Dropbox, saying I need to change my password (again) because <a href="https://blogs.dropbox.com/dropbox/2016/08/resetting-passwords-to-keep-your-files-safe/">millions of account credentials have been leaked (again)</a>. That got me a bit upset, so I finally decided to start looking for a better way of dealing with passwords.</p>
+<h2>The solution</h2>
+<p>I learnt from password managers two or three years ago, when I saw a workmate using one in the office. I didn't remember the name, but I did remember how the icon looked like. It turned out to be <a href="https://1password.com/">1Password</a>. I checked it out and it was offering – still is – a free six month trial period, which should be more than enough time to use it extensively. So I signed up. They also have some cool information explaining <a href="https://1password.com/security/">how it works in the security section</a>.</p>
+<p>I've changed every password in every single online service I've used for the last 5 days and updated every single 2-factor auth code to use the 1Password app rather than my phone - equivalent of using Google Authenticator, for instance.</p>
+<p>I have to say that apart from the pain of changing every password, using this tool feels great. And it definitely makes me feel safer. Now every password I'm using is different: they are long, hard to remember, don't make any sense and combine symbols and numbers. Perfect passwords!</p>
+<p>I will complain about one thing though: using it on a phone or tablet is not a great experience. You need to switch context to grab a particular password and then come back to the login screen to enter it. And if you have 2-factor authentication activated, it will mean an extra change of context – that would be 4 changes to get through a login form. There are a couple of apps that integrate their login forms with 1Password and make the experience much better, but that's still a small number of apps.</p>
+<h2>Summary</h2>
+<p>If you are concerned about your security, get yourself a password manager or a service that will make you create secure passwords.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://1password.com/">1Password</a>: the password manager I'm using.</li>
+<li><a href="https://twistpass.com/">TwistPass</a>: a very cool password generator built by a workmate from <a href="https://p.ota.to">Potato</a>.</li>
+<li><a href="https://lastpass.com/">LastPass</a>: I've heard great things about it.</li>
+<li><a href="https://www.google.com/landing/2step/#tab=how-it-works">Google site explaining 2 factor authentication</a></li>
+</ul></div>
+</article><article class="blog-post">
 <div class="blog-post__header">
 <h1 class="blog-post__title"><a href="just-married.html">Just married</a></h1>
 <span class="blog-post__date">Saturday, 09 July 2016</span>
@@ -48,34 +80,9 @@
 <p>The reason I decided to ask for it was that I was going to get more variety of work than if I decided to stay the way I was. Which wasn't bad, but most of the times I felt like I wasn't being challenged and I really thought I could do more. Since then I've been lucky enough to work on Android and Arduino related stuff, tech lead a couple of short projects and more recently being the tech lead of a big team (oscillating between 6 and 8 people).</p>
 <p>I think I could have got the promotion a bit earlier if I had pushed for it a bit more, but I really didn't want to rush it. Rushing it would have meant forcing myself to learn things faster and I think this is one of those things it's better learnt slowly.</p>
 <p>The main difference I've noticed during the last year is that I now have to deal with people much more than I used to: people will ask you questions which answers you won't always know and figuring out how to solve these situations is, most of the times, a lot of fun.</p></div>
-</article><article class="blog-post">
-<div class="blog-post__header">
-<h1 class="blog-post__title"><a href="new-blog.html">New Blog</a></h1>
-<span class="blog-post__date">Thursday, 14 April 2016</span>
-</div>
-<div class="blog-post__content"><p>For the last few months I haven't been coding much in my spare time. Not
-necessarily a bad thing though, I've been enjoying other aspects of life (videogames, movies, etc.).</p>
-<p>However, I felt it's been a long while since I wrote some Python for a
-personal project, so I've decided to write a simple static site generator
-in Python - yes, I know about Pelican, I've used it in the past.</p>
-<h3>Why?</h3>
-<p>No particular reason, but if I had to come up with one, I'd say I want to
-work on a simple problem, such as generating an static html site, that
-will make me come up with a solution without checking how other static
-site generators work. Just for fun.</p>
-<p>Also, I've been re-reading SMACSS recently and I wanted to apply some
-of the knowledge before I forget about it.</p>
-<h3>Technology that will be used</h3>
-<ul>
-<li>Python 3</li>
-<li>Markdown</li>
-<li>BeautifulSoup 4</li>
-</ul>
-<h3>Code available here</h3>
-<p><a href="https://gitlab.com/jgasteiz/jgasteiz.gitlab.io">Gitlab jgasteiz</a></p></div>
 </article></div>
 <div class="pagination container" id="pagination">
-<p>Page <span id="page-number">2</span> of <span id="num-pages">6</span></p>
+<p>Page <span id="page-number">2</span> of <span id="num-pages">7</span></p>
 <p><a class="previous-page" href="index.html" id="previous-page">Previous page</a><a class="next-page" href="page3.html" id="next-page">Next page</a></p>
 </div>
 <footer class="footer" id="footer">

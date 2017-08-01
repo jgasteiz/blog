@@ -62,11 +62,21 @@
 }
 
 .site-title,
-.site-subtitle {
+.site-subtitle,
+.site-illustration {
     display: block;
     font-weight: 300;
     margin: 0;
     text-align: center;
+}
+
+.site-illustration {
+    color: $dark-grey;
+    font-size: 14px;
+
+    a {
+        color: $light-grey;
+    }
 }
 
 .site-title a {
