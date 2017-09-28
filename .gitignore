@@ -5,4 +5,4 @@ node_modules
 *.pyc
 generator/test_output/*.html
 .idea
-public/*
+public
