@@ -1,9 +1,0 @@
-image: python:3.4
-
-pages:
-  script:
-    - pip install -r requirements.txt
-    - sh run_tests.sh
-  artifacts:
-    paths:
-    - public
