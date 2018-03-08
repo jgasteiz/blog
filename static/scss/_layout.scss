@@ -14,8 +14,13 @@
 }
 
 .header {
-    background: $blue-grey;
+    background: $header-bg;
+    color: $light-grey;
     margin-bottom: 24px;
+
+    a {
+        color: $light-grey;
+    }
 }
 
 .navigation {
@@ -30,10 +35,6 @@
 .navigation__list-item {
     font-size: $font-size-large;
     margin-right: 16px;
-
-    a {
-      color: #fff;
-    }
 
     &:last-child {
         margin: 0;
@@ -70,20 +71,16 @@
     text-align: center;
 }
 
-.site-illustration {
-    color: $dark-grey;
-    font-size: 14px;
-
-    a {
-        color: $light-grey;
-    }
-}
-
 .site-title a {
     color: $light-grey;
+    text-decoration: none;
 }
+
+.site-illustration {
+    font-size: 14px;
+}
+
 .site-subtitle {
-    color: $dark-grey;
     font-size: 26px;
 }
 
