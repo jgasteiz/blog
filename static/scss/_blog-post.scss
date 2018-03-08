@@ -18,6 +18,13 @@
         width: 50%;
     }
 }
+.blog-post__title a {
+    color: $link-color;
+
+    &:hover {
+        color: $text-color;
+    }
+}
 .blog-post__date {
     font-size: $h3-size;
     text-align: right;

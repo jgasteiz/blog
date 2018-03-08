@@ -24,6 +24,9 @@ a {
     color: $link-color;
     text-decoration: underline;
 
+    &:visited {
+        color: $purple;
+    }
     &:hover {
         color: $text-color;
     }
