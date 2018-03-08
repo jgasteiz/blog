@@ -1,24 +1,13 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/jgasteiz/blog.git"
-  },
+  "repository": "git@github.com:jgasteiz/blog.git",
   "author": "Javi Manzano <javi.manzano.oller@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/jgasteiz/blog/issues"
-  },
-  "homepage": "https://gitlab.com/jgasteiz/blog#README",
-  "devDependencies": {
+  "license": "MIT",
+  "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-server-livereload": "^1.7.0",
-    "gulp-sass": "^2.2.0"
+    "gulp-sass": "^3.1.0",
+    "gulp-server-livereload": "^1.9.2"
   }
 }
