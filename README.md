@@ -1,6 +1,6 @@
 # Javi's Blog
 
-This is the personal blog of Javi Manzano.
+This is Javi Manzano's personal blog.
 
 ## How to build the thing
 
@@ -9,11 +9,11 @@ This is the personal blog of Javi Manzano.
     - `source ./env/bin/activate`
 - Install the dependencies
     - `pip install -r requirements.txt`
-    - `npm install`
+    - `yarn install`
+- Build the static files
+    - `yarn build`
 - Generate the blog
     - `./generate_blog.sh`
-- Serve it locally
-    - `gulp`
 
 
 ## Adding new blog posts
