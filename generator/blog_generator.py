@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 import markdown
-from slugify import slugify
+import slugify
 
 
 class BlogGenerator(object):
@@ -62,9 +62,20 @@ class BlogGenerator(object):
         # Get the blog post content in html
         article_file = open(article_file_path, 'r')
 
+        content = article_file.read()
+
         # Get the post date and title from the md file.
+        article_file.seek(0)
         article_title = article_file.readline().strip('Title:').strip('\n').strip()
         article_date = article_file.readline().strip('Date:').strip('\n').strip()
+        if "Language:" in content:
+            language = article_file.readline().strip('Language:').strip('\n').strip()
+        else:
+            language = "english"
+        if "Slug:" in content:
+            slug = article_file.readline().strip('Slug:').strip('\n').strip()
+        else:
+            slug = None
         article_date = datetime.strptime(article_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
         # Get the rest of the content from the md file.
         md_content = article_file.read()
@@ -72,24 +83,27 @@ class BlogGenerator(object):
         # Close the md file.
         article_file.close()
 
+        if not slug:
+            slug = slugify.slugify(article_title)
+
         # Get the article from the template and populate the title, date and content.
         article = self.get_post_html_soup().find('article')
 
         article_title_element = article.find(attrs={'class': 'blog-post__title'})
         if include_title_link:
-            article_title_anchor = self.get_base_html_soup().new_tag(
-                'a', href='{}.html'.format(slugify(article_title)))
+            article_title_anchor = self.get_base_html_soup().new_tag('a', href='{}.html'.format(slug))
             article_title_anchor.append(article_title)
             article_title_element.append(article_title_anchor)
         else:
             article_title_element.append(article_title)
 
+        article["class"].append(f"blog-post--{language}")
         article.find(attrs={'class': 'blog-post__date'}).append(article_date)
         article.find(attrs={'class': 'blog-post__content'}).append(
             BeautifulSoup(article_content, self.parser)
         )
 
-        return article, article_title
+        return article, article_title, slug
 
     def get_articles_in_page(self, articles_list, page_num):
         """
@@ -102,7 +116,10 @@ class BlogGenerator(object):
     def generate_detail_pages(self):
         # Generate detail pages
         for file_path in self.get_content_files():
-            article, article_title = self.get_article(file_path)
+            article, article_title, slug = self.get_article(file_path)
+
+            if not slug:
+                slug = slugify.slugify(article_title)
 
             # Create a detail page
             detail_soup = self.get_base_html_soup()
@@ -112,7 +129,7 @@ class BlogGenerator(object):
             detail_soup.find(name='title').string = '{} | {}'.format(article_title, detail_soup.find(name='title').text)
 
             # Write the output detail html page.
-            output_html_file = open('{}/{}.html'.format(self.output_path, slugify(article_title)), 'w')
+            output_html_file = open('{}/{}.html'.format(self.output_path, slug), 'w')
             output_html_file.write(str(detail_soup))
             output_html_file.close()
 
@@ -120,7 +137,7 @@ class BlogGenerator(object):
         # Generate the articles for the index page.
         all_articles = []
         for file_path in self.get_content_files():
-            article, _ = self.get_article(file_path, include_title_link=True)
+            article, _, _ = self.get_article(file_path, include_title_link=True)
             all_articles.append(article)
 
         # Generate an index.html per page.
