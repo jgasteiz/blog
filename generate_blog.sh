@@ -1,1 +1,0 @@
-python generator/generate.py

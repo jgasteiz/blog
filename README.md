@@ -2,20 +2,24 @@
 
 This is Javi Manzano's personal blog.
 
-## How to build the thing
+## How to build and run this thing
 
-- Create a virtualenv and activate it
-    - `python3 -m venv env`
-    - `source ./env/bin/activate`
-- Install the dependencies
-    - `pip install -r requirements.txt`
-    - `yarn install`
-- Build the static files
-    - `yarn build`
-- Generate the blog
-    - `./generate_blog.sh`
-
-
-## Adding new blog posts
-
-- `./new_post.sh` Will create a `.md` file under the path specified in `CONTENT_PATH`
+1. Install python dependencies
+```shell
+python3 -m venv env
+source ./env/bin/activate
+pip install -r requirements.txt
+```
+2. Build the static files
+```shell
+yarn install
+yarn build
+```
+3. Generate the blog
+```shell
+make generate
+```
+(4. Adding new blog posts)
+```shell
+make new_post
+```

@@ -25,7 +25,7 @@ class BlogGenerator(object):
 
     def get_about_html_soup(self):
         """
-        Create a BeautifulSoup object with the content of the about template.
+        Create a BeautifulSoup object with the content of the "about" template.
         """
         about_html_file = open('{}/about.html'.format(self.base_path), 'r')
         about_html = about_html_file.read()
@@ -163,7 +163,7 @@ class BlogGenerator(object):
             output_html_file.close()
 
     def generate_about_page(self):
-        # Generate the about.html
+        # Generate "about.html"
         about_content = self.get_about_html_soup().find('article')
 
         about_soup = self.get_base_html_soup()

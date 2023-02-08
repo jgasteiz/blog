@@ -15,5 +15,6 @@ def main():
         page_size=PAGE_SIZE,
     ).generate()
 
+
 if __name__ == '__main__':
     main()

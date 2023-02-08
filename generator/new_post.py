@@ -9,5 +9,6 @@ def main():
     new_post_file.write(post_content)
     new_post_file.close()
 
+
 if __name__ == '__main__':
     main()
