@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import markdown
 import slugify
+import pykakasi
 
 
 class BlogGenerator(object):
@@ -80,6 +81,8 @@ class BlogGenerator(object):
         # Get the rest of the content from the md file.
         md_content = article_file.read()
         article_content = markdown.markdown(md_content)
+        if language == "japanese":
+            article_content = self.furiganise_japanese_content(article_content)
         # Close the md file.
         article_file.close()
 
@@ -190,6 +193,20 @@ class BlogGenerator(object):
         output_html_file = open('{}/about.html'.format(self.output_path), 'w')
         output_html_file.write(str(about_soup))
         output_html_file.close()
+
+    def furiganise_japanese_content(self, content: str) -> str:
+        result = pykakasi.kakasi().convert(content)
+        html = ""
+        for item in result:
+            original = item["orig"]
+            hiragana = item["hira"]
+            katakana = item["kana"]
+            # If the original matches the hiragana or katakana, use the original.
+            if original in [hiragana, katakana]:
+                html = f"{html}{original}"
+            else:
+                html = f"{html}<ruby>{original}<rt>{hiragana}</rt></ruby>"
+        return html
 
     def generate(self):
         """

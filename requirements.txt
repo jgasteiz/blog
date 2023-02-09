@@ -1,3 +1,4 @@
 beautifulsoup4==4.11.2
 Markdown==3.4.1
 python-slugify==8.0.0
+pykakasi==2.2.1
