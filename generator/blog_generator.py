@@ -195,18 +195,20 @@ class BlogGenerator(object):
         output_html_file.close()
 
     def furiganise_japanese_content(self, content: str) -> str:
-        result = pykakasi.kakasi().convert(content)
-        html = ""
-        for item in result:
-            original = item["orig"]
-            hiragana = item["hira"]
-            katakana = item["kana"]
-            # If the original matches the hiragana or katakana, use the original.
-            if original in [hiragana, katakana]:
-                html = f"{html}{original}"
-            else:
-                html = f"{html}<ruby>{original}<rt>{hiragana}</rt></ruby>"
-        return html
+        return content
+        # TODO: Fix this.
+        # result = pykakasi.kakasi().convert(content)
+        # html = ""
+        # for item in result:
+        #     original = item["orig"]
+        #     hiragana = item["hira"]
+        #     katakana = item["kana"]
+        #     # If the original matches the hiragana or katakana, use the original.
+        #     if original in [hiragana, katakana]:
+        #         html = f"{html}{original}"
+        #     else:
+        #         html = f"{html}<ruby>{original}<rt>{hiragana}</rt></ruby>"
+        # return html
 
     def generate(self):
         """
