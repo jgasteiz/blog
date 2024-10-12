@@ -1,0 +1,294 @@
+{
+  "main": {
+    "id": "a0abf6a4023b2686",
+    "type": "split",
+    "children": [
+      {
+        "id": "08408343f3317324",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e1655d6b9e2f1522",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-03-08.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b4291022ec145c6b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-08-16.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4e93e26583ef2d4c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-08-17.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0ddc92536af79a45",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-08-18.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f54328ba84612c93",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-08-21.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "09a76be898aa58ca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-08-22.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3bf9c66ce55107b4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-12-20.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5a3de6afa37c9225",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2024-03-04.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c2e454570dada7d8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-02-27.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 8
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "54634b0faf3cafce",
+    "type": "split",
+    "children": [
+      {
+        "id": "2efddb356e551609",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e783974c7168bfe",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabeticalReverse"
+              }
+            }
+          },
+          {
+            "id": "08dbf5edee4c8c80",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "edf530d0ff1db878",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "66d4eb2796275e45",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ddc8bf2c996edcd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f7125a06826dbd0d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2023-02-27.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3ce5d1edefee46b3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2023-02-27.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "38a97e77e7f28729",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a3d4d915b0494e5f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2023-02-27.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "c2e454570dada7d8",
+  "lastOpenFiles": [
+    "images/thursday-shrine.jpeg",
+    "images/thursday-temple.jpeg",
+    "images/friday-tempura.jpeg",
+    "images/sunday-sangenjaya.jpeg",
+    "images/saturday-temple.jpeg",
+    "images/saturday-temple.jpeg.crdownload",
+    "images/saturday-tempura.jpeg",
+    "images/friday-temple.jpeg",
+    "2023-03-08.md",
+    "2023-02-27.md",
+    "2023-02-20.md",
+    "images/inokashira-park-shrine.jpeg",
+    "images/inokashira-park-shrine.jpeg.crdownload",
+    "images/inokashira-park.jpeg",
+    "images/yotsubato!.jpeg",
+    "images/yotsubato!.jpeg.crdownload",
+    "images/temple-大宮八幡宮.jpeg",
+    "2023-02-16.md",
+    "images/octo-party-2.jpeg.crdownload",
+    "2023-02-13.md",
+    "2023-02-12.md",
+    "2023-02-11.md",
+    "images/going-to-narita.jpeg.crdownload",
+    "2023-02-09.md",
+    "2023-02-08.md",
+    "2023-02-07.md",
+    "2023-02-06.md",
+    "2023-08-17.md",
+    "2023-08-18.md",
+    "2023-08-21.md",
+    "2023-08-22.md",
+    "2023-12-20.md",
+    "2024-03-04.md",
+    "2023-08-16.md",
+    "2024-03-11.md",
+    "2024-07-04.md",
+    "images/dragon-ball-2.jpg.sb-f4274ae7-2l2KXb",
+    "images/hiroshima-4.jpg.sb-f4274ae7-sZpYnG",
+    "images/hiroshima-3.jpg.sb-f4274ae7-z6z9ef",
+    "images/hiroshima-2.jpg.sb-f4274ae7-BDrQOt",
+    "images/dragon-ball.jpg.sb-f4274ae7-1DMDHc",
+    "Untitled 2.md",
+    "2021-02-04.md",
+    "2019-11-18.md",
+    "2015-02-02.md"
+  ]
+}

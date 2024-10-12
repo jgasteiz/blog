@@ -1,18 +1,14 @@
 from blog_generator import BlogGenerator
-from settings import (
-    BASE_PATH,
-    CONTENT_PATH,
-    OUTPUT_PATH,
-    PAGE_SIZE,
-)
+import settings
 
 
 def main():
     BlogGenerator(
-        base_path=BASE_PATH,
-        content_path=CONTENT_PATH,
-        output_path=OUTPUT_PATH,
-        page_size=PAGE_SIZE,
+        base_path=settings.BASE_PATH,
+        content_path=settings.CONTENT_PATH,
+        images_path=settings.IMAGES_PATH,
+        output_path=settings.OUTPUT_PATH,
+        page_size=settings.PAGE_SIZE,
     ).generate()
 
 

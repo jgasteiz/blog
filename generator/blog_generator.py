@@ -4,13 +4,22 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import markdown
 import slugify
-import pykakasi
+import shutil
 
 
 class BlogGenerator(object):
-    def __init__(self, base_path, content_path, output_path, page_size, parser='html.parser'):
+    def __init__(
+        self,
+        base_path: str,
+        content_path: str,
+        images_path: str,
+        output_path: str,
+        page_size: str,
+        parser="html.parser",
+    ) -> None:
         self.base_path = base_path
         self.content_path = content_path
+        self.images_path = images_path
         self.output_path = output_path
         self.parser = parser
         self.page_size = page_size
@@ -19,7 +28,7 @@ class BlogGenerator(object):
         """
         Create a BeautifulSoup object with the content of the base template.
         """
-        base_html_file = open('{}/index.html'.format(self.base_path), 'r')
+        base_html_file = open("{}/index.html".format(self.base_path), "r")
         base_html = base_html_file.read()
         base_html_file.close()
         return BeautifulSoup(base_html, self.parser)
@@ -28,7 +37,7 @@ class BlogGenerator(object):
         """
         Create a BeautifulSoup object with the content of the "about" template.
         """
-        about_html_file = open('{}/about.html'.format(self.base_path), 'r')
+        about_html_file = open("{}/about.html".format(self.base_path), "r")
         about_html = about_html_file.read()
         about_html_file.close()
         return BeautifulSoup(about_html, self.parser)
@@ -37,7 +46,7 @@ class BlogGenerator(object):
         """
         Create a BeautifulSoup object with the content of the post template.
         """
-        post_html_file = open('{}/post.html'.format(self.base_path), 'r')
+        post_html_file = open("{}/post.html".format(self.base_path), "r")
         post_html = post_html_file.read()
         post_html_file.close()
         return BeautifulSoup(post_html, self.parser)
@@ -49,7 +58,7 @@ class BlogGenerator(object):
         content_files = []
         for article_file in os.listdir(self.content_path):
             if article_file.endswith(".md"):
-                content_files.append('{}/{}'.format(self.content_path, article_file))
+                content_files.append("{}/{}".format(self.content_path, article_file))
         content_files = sorted(content_files)
         content_files.reverse()
         return content_files
@@ -61,28 +70,24 @@ class BlogGenerator(object):
         the value of `include_title_link`.
         """
         # Get the blog post content in html
-        article_file = open(article_file_path, 'r')
+        article_file = open(article_file_path, "r")
 
         content = article_file.read()
 
         # Get the post date and title from the md file.
         article_file.seek(0)
-        article_title = article_file.readline().strip('Title:').strip('\n').strip()
-        article_date = article_file.readline().strip('Date:').strip('\n').strip()
+        article_title = article_file.readline().strip("Title:").strip("\n").strip()
+        # article_date = article_file.readline().strip("Date:").strip("\n").strip()
+        article_date = article_file.name.split("/")[-1].replace(".md", "")
         if "Language:" in content:
-            language = article_file.readline().strip('Language:').strip('\n').strip()
+            language = article_file.readline().strip("Language:").strip("\n").strip()
         else:
             language = "english"
-        if "Slug:" in content:
-            slug = article_file.readline().strip('Slug:').strip('\n').strip()
-        else:
-            slug = None
-        article_date = datetime.strptime(article_date, '%Y-%m-%d').strftime('%A, %d %B %Y')
+        slug = slugify.slugify(f"{article_date}-{article_title}")
+        article_date = datetime.strptime(article_date, "%Y-%m-%d").strftime("%A, %d %B %Y")
         # Get the rest of the content from the md file.
         md_content = article_file.read()
         article_content = markdown.markdown(md_content)
-        if language == "japanese":
-            article_content = self.furiganise_japanese_content(article_content)
         # Close the md file.
         article_file.close()
 
@@ -90,19 +95,21 @@ class BlogGenerator(object):
             slug = slugify.slugify(article_title)
 
         # Get the article from the template and populate the title, date and content.
-        article = self.get_post_html_soup().find('article')
+        article = self.get_post_html_soup().find("article")
 
-        article_title_element = article.find(attrs={'class': 'blog-post__title'})
+        article_title_element = article.find(attrs={"class": "blog-post__title"})
         if include_title_link:
-            article_title_anchor = self.get_base_html_soup().new_tag('a', href='{}.html'.format(slug))
+            article_title_anchor = self.get_base_html_soup().new_tag(
+                "a", href="{}.html".format(slug)
+            )
             article_title_anchor.append(article_title)
             article_title_element.append(article_title_anchor)
         else:
             article_title_element.append(article_title)
 
         article["class"].append(f"blog-post--{language}")
-        article.find(attrs={'class': 'blog-post__date'}).append(article_date)
-        article.find(attrs={'class': 'blog-post__content'}).append(
+        article.find(attrs={"class": "blog-post__date"}).append(article_date)
+        article.find(attrs={"class": "blog-post__content"}).append(
             BeautifulSoup(article_content, self.parser)
         )
 
@@ -126,13 +133,15 @@ class BlogGenerator(object):
 
             # Create a detail page
             detail_soup = self.get_base_html_soup()
-            detail_soup.find(id='pagination').extract()
+            detail_soup.find(id="pagination").extract()
             detail_content = detail_soup.find(id="main")
             detail_content.append(BeautifulSoup(str(article), self.parser))
-            detail_soup.find(name='title').string = '{} | {}'.format(article_title, detail_soup.find(name='title').text)
+            detail_soup.find(name="title").string = "{} | {}".format(
+                article_title, detail_soup.find(name="title").text
+            )
 
             # Write the output detail html page.
-            output_html_file = open('{}/{}.html'.format(self.output_path, slug), 'w')
+            output_html_file = open("{}/{}.html".format(self.output_path, slug), "w")
             output_html_file.write(str(detail_soup))
             output_html_file.close()
 
@@ -148,8 +157,8 @@ class BlogGenerator(object):
         for i in range(1, num_pages + 1):
             # Find the main content container
             main_soup = self.get_base_html_soup()
-            main_content = main_soup.find(id='main')
-            pagination = main_soup.find(id='pagination')
+            main_content = main_soup.find(id="main")
+            pagination = main_soup.find(id="pagination")
 
             # Append the articles to the main content.
             articles_to_append = self.get_articles_in_page(all_articles, i)
@@ -157,25 +166,29 @@ class BlogGenerator(object):
                 main_content.append(BeautifulSoup(str(article), self.parser))
 
             if i == 1:
-                output_html_file = open('{}/index.html'.format(self.output_path), 'w')
+                output_html_file = open("{}/index.html".format(self.output_path), "w")
             else:
-                output_html_file = open('{}/page{}.html'.format(self.output_path, i), 'w')
+                output_html_file = open("{}/page{}.html".format(self.output_path, i), "w")
 
             if num_pages > 1:
-                pagination.find(id='page-number').append(str(i))
-                pagination.find(id='num-pages').append(str(num_pages))
+                pagination.find(id="page-number").append(str(i))
+                pagination.find(id="num-pages").append(str(num_pages))
 
                 if i == 1:
-                    pagination.find(id='previous-page').extract()
+                    pagination.find(id="previous-page").extract()
                 elif i == 2:
-                    pagination.find(id='previous-page').attrs['href'] = 'index.html'
+                    pagination.find(id="previous-page").attrs["href"] = "index.html"
                 else:
-                    pagination.find(id='previous-page').attrs['href'] = 'page{}.html'.format(str(i - 1))
+                    pagination.find(id="previous-page").attrs["href"] = "page{}.html".format(
+                        str(i - 1)
+                    )
 
                 if num_pages > i:
-                    pagination.find(id='next-page').attrs['href'] = 'page{}.html'.format(str(i + 1))
+                    pagination.find(id="next-page").attrs["href"] = "page{}.html".format(
+                        str(i + 1)
+                    )
                 else:
-                    pagination.find(id='next-page').extract()
+                    pagination.find(id="next-page").extract()
             else:
                 pagination.extract()
 
@@ -184,31 +197,22 @@ class BlogGenerator(object):
 
     def generate_about_page(self):
         # Generate "about.html"
-        about_content = self.get_about_html_soup().find('article')
+        about_content = self.get_about_html_soup().find("article")
 
         about_soup = self.get_base_html_soup()
-        about_soup.find(id='pagination').extract()
-        about_soup.find(id='main').append(BeautifulSoup(str(about_content), self.parser))
+        about_soup.find(id="pagination").extract()
+        about_soup.find(id="main").append(BeautifulSoup(str(about_content), self.parser))
 
-        output_html_file = open('{}/about.html'.format(self.output_path), 'w')
+        output_html_file = open("{}/about.html".format(self.output_path), "w")
         output_html_file.write(str(about_soup))
         output_html_file.close()
 
-    def furiganise_japanese_content(self, content: str) -> str:
-        return content
-        # TODO: Fix this.
-        # result = pykakasi.kakasi().convert(content)
-        # html = ""
-        # for item in result:
-        #     original = item["orig"]
-        #     hiragana = item["hira"]
-        #     katakana = item["kana"]
-        #     # If the original matches the hiragana or katakana, use the original.
-        #     if original in [hiragana, katakana]:
-        #         html = f"{html}{original}"
-        #     else:
-        #         html = f"{html}<ruby>{original}<rt>{hiragana}</rt></ruby>"
-        # return html
+    def copy_images(self) -> None:
+        for image in os.listdir(self.images_path):
+            shutil.copy(
+                "{}/{}".format(self.images_path, image),
+                "{}/images/{}".format(self.output_path, image),
+            )
 
     def generate(self):
         """
@@ -218,3 +222,4 @@ class BlogGenerator(object):
         self.generate_detail_pages()
         self.generate_main_pages()
         self.generate_about_page()
+        self.copy_images()
