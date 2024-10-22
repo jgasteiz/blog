@@ -9,8 +9,6 @@ serve:
 
 publish:
 	# Publish the site, using today's date as the commit message
-	cd public
-	git add --all
-	# Use today's date and the current local time as the commit message
-	git commit -m "Publish $(shell date +'%Y-%m-%d %H:%M:%S')"
-	git push origin master
+	cd public && git add --all && git commit -m "Publish $(shell date +'%Y-%m-%d %H:%M:%S')" && git push origin master
+	# Update the blog
+	git add --all && git commit -m "Added new blog posts" && git push origin master
