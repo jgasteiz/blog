@@ -83,7 +83,7 @@ class BlogGenerator(object):
             language = article_file.readline().strip("Language:").strip("\n").strip()
         else:
             language = "english"
-        slug = slugify.slugify(f"{article_date}-{article_title}")
+        slug = slugify.slugify(text=f"{article_date}-{article_title}", allow_unicode=True)
         article_date = datetime.strptime(article_date, "%Y-%m-%d").strftime("%A, %d %B %Y")
         # Get the rest of the content from the md file.
         md_content = article_file.read()
