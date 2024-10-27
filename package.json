@@ -9,6 +9,6 @@
     "sass": "^1.79.5"
   },
   "scripts": {
-    "build": "sass static/scss:public/css --style compressed"
+    "build": "sass static/scss:public/css"
   }
 }
