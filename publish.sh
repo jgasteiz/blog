@@ -2,7 +2,7 @@
 
 # Generate the site
 python ./generator/generate.py
-NOW=`date '+%F_%H:%M:%S'`
+NOW=`date '+%FT%H:%M:%S'`
 git add --all
 git commit -m "Publish $NOW"
 git push origin master

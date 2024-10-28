@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6a82299cbf978fbf",
+        "id": "ffc5ee68c21ccf50",
         "type": "tabs",
         "children": [
           {
-            "id": "7594fbd34e903081",
+            "id": "14dae965c76facc9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "2024-10-27.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2024-10-27"
             }
           }
         ]
@@ -159,7 +163,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7594fbd34e903081",
+  "active": "14dae965c76facc9",
   "lastOpenFiles": [
     "2024-10-27.md",
     "2024-10-22.md",
