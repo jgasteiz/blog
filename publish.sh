@@ -2,12 +2,12 @@
 
 # Generate the site
 python ./generator/generate.py
-date=$(date + '%Y-%m-%d %H:%M:%S')
+NOW=`date '+%F_%H:%M:%S'`
 git add --all
-git commit -m "Publish $date"
+git commit -m "Publish $NOW"
 git push origin master
 cd ./public
 git add --all
-git commit -m $message
+git commit -m "Publish $NOW"
 git push origin master
 cd ..
