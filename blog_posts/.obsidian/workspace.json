@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e0dc09c716da7ea9",
+        "id": "d7da098712e2498b",
         "type": "tabs",
         "children": [
           {
-            "id": "eff9ace99a00ef8f",
+            "id": "1765c30da6f8ff03",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -162,10 +162,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "eff9ace99a00ef8f",
+  "active": "1765c30da6f8ff03",
   "lastOpenFiles": [
-    "2024-12-02.md",
     "2024-12-09.md",
+    "2024-12-02.md",
     "images/ada-book.jpg",
     "images/oviedo-sidreria-1.jpg",
     "images/oviedo-sidreria-2.jpg",
