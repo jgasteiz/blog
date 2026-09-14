@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT — Stephen King · Chapter Timeline</title>
+<style>
+  :root{
+    --paper:#efe4cf; --paper2:#e7d8bd; --ink:#2b2119; --ink-soft:#5c4a37;
+    --rule:#c8b18a; --card:#f6eeda; --card-edge:#d8c2a0;
+    --red:#8f2b1d; --red-bright:#b5361f; --teal:#2f5d53; --gold:#a7802f;
+    --shadow:rgba(60,40,20,.18);
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(167,128,47,.06), transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(143,43,29,.06), transparent 42%);
+    color:var(--ink); font-family:var(--serif); line-height:1.55;
+  }
+  a{color:var(--red);}
+  /* header */
+  header.hero{
+    padding:44px 20px 30px; text-align:center; position:relative;
+    border-bottom:3px double var(--rule);
+    background:linear-gradient(180deg,var(--paper2),var(--paper));
+  }
+  .kicker{font-family:var(--sans); letter-spacing:.42em; text-transform:uppercase;
+    font-size:11px; color:var(--red); margin:0 0 10px;}
+  h1.title{font-size:clamp(52px,13vw,120px); margin:0; line-height:.82;
+    letter-spacing:.02em; font-weight:800; color:var(--ink);
+    text-shadow:2px 2px 0 var(--card-edge);}
+  h1.title span{color:var(--red-bright);}
+  .byline{font-style:italic; font-size:clamp(15px,2.4vw,20px); margin:12px 0 4px; color:var(--ink-soft);}
+  .sub{font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; color:var(--ink-soft);
+    max-width:640px; margin:10px auto 0;}
+  .ornament{color:var(--gold); letter-spacing:.5em; margin:16px 0 0; font-size:14px;}
+  /* controls */
+  .controls{position:sticky; top:0; z-index:20; background:rgba(233,216,189,.94);
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--rule);
+    padding:12px 16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:center;}
+  .search{flex:1 1 260px; max-width:420px; display:flex; align-items:center; gap:8px;
+    background:var(--card); border:1px solid var(--card-edge); border-radius:2px; padding:7px 11px;}
+  .search input{border:0; background:transparent; outline:none; width:100%; font-family:var(--sans);
+    font-size:14px; color:var(--ink);}
+  .search svg{flex:none;}
+  .filters{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{font-family:var(--sans); font-size:12px; letter-spacing:.03em; cursor:pointer;
+    border:1px solid var(--card-edge); background:var(--card); color:var(--ink-soft);
+    padding:6px 12px; border-radius:20px; transition:.15s; user-select:none;}
+  .chip:hover{border-color:var(--red);}
+  .chip.active{background:var(--red); color:#f6eeda; border-color:var(--red);}
+  .chip.era1957{}
+  .btns{display:flex; gap:6px;}
+  .btn{font-family:var(--sans); font-size:12px; cursor:pointer; background:transparent;
+    border:1px solid var(--card-edge); color:var(--ink-soft); padding:6px 12px; border-radius:2px;}
+  .btn:hover{border-color:var(--red); color:var(--red);}
+  /* timeline layout */
+  main{max-width:940px; margin:0 auto; padding:34px 18px 80px; position:relative;}
+  .rail{position:absolute; left:calc(50% - 1px); top:0; bottom:0; width:2px;
+    background:linear-gradient(180deg,transparent,var(--rule) 4%,var(--rule) 96%,transparent);}
+  .part-band{position:relative; text-align:center; margin:38px 0 26px; z-index:2;}
+  .part-band .lbl{display:inline-block; background:var(--ink); color:var(--paper);
+    font-family:var(--sans); letter-spacing:.28em; text-transform:uppercase; font-size:11px;
+    padding:8px 20px;}
+  .part-band .pt-title{font-size:26px; margin:8px 0 0; font-style:italic; color:var(--red);}
+  .part-band .pt-years{font-family:var(--sans); font-size:11.5px; letter-spacing:.14em;
+    color:var(--ink-soft); margin-top:3px;}
+  /* entries */
+  .entry{position:relative; width:50%; padding:14px 40px; z-index:2;}
+  .entry.left{left:0; text-align:right;}
+  .entry.right{left:50%;}
+  .dot{position:absolute; top:26px; width:18px; height:18px; border-radius:50%;
+    background:var(--card); border:3px solid var(--red); z-index:3;
+    box-shadow:0 0 0 4px var(--paper);}
+  .entry.left .dot{right:-9px;}
+  .entry.right .dot{left:-9px;}
+  .entry.interlude .dot{border-color:var(--teal); border-radius:0; transform:rotate(45deg);}
+  .entry.epilogue .dot{border-color:var(--gold);}
+  .card{background:var(--card); border:1px solid var(--card-edge); border-top:4px solid var(--red);
+    padding:16px 18px; box-shadow:3px 4px 10px var(--shadow); cursor:pointer;
+    transition:transform .12s, box-shadow .12s; text-align:left;}
+  .card:hover{transform:translateY(-2px); box-shadow:4px 7px 16px var(--shadow);}
+  .entry.interlude .card{border-top-color:var(--teal); background:#eef0e6;}
+  .entry.epilogue .card{border-top-color:var(--gold);}
+  .c-num{font-family:var(--sans); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--red); font-weight:700;}
+  .entry.interlude .c-num{color:var(--teal);}
+  .entry.epilogue .c-num{color:var(--gold);}
+  .c-title{font-size:21px; margin:3px 0 6px; line-height:1.15;}
+  .c-set{font-family:var(--sans); font-size:11px; letter-spacing:.1em; color:var(--ink-soft);
+    display:inline-block; border:1px solid var(--card-edge); padding:2px 8px; border-radius:2px;
+    background:var(--paper);}
+  .c-summary{margin:11px 0 0; font-size:15px; color:var(--ink);}
+  .c-detail{max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .card.open .c-detail{max-height:1400px;}
+  .c-detail-inner{padding-top:12px; margin-top:12px; border-top:1px dashed var(--rule);}
+  .hl-label{font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--ink-soft); margin:0 0 6px;}
+  ul.hls{margin:0; padding-left:18px;}
+  ul.hls li{margin:0 0 7px; font-size:14px;}
+  ul.hls li::marker{color:var(--red);}
+  .toggle-hint{font-family:var(--sans); font-size:11px; color:var(--gold); margin-top:10px;
+    display:inline-block; letter-spacing:.05em;}
+  .hidden{display:none !important;}
+  .no-match{text-align:center; font-style:italic; color:var(--ink-soft); padding:40px; display:none;}
+  /* legend / footer */
+  .legend{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin:6px auto 0;
+    font-family:var(--sans); font-size:11.5px; color:var(--ink-soft);}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .swatch{width:12px; height:12px; border-radius:50%; border:2px solid;}
+  .sw-red{border-color:var(--red);} .sw-teal{border-color:var(--teal); border-radius:0; transform:rotate(45deg);}
+  .sw-gold{border-color:var(--gold);}
+  footer{text-align:center; padding:26px 20px 50px; border-top:3px double var(--rule);
+    font-family:var(--sans); font-size:11.5px; color:var(--ink-soft); letter-spacing:.04em;}
+  footer em{color:var(--red);}
+  @media (max-width:720px){
+    .rail{left:20px;}
+    .entry, .entry.left, .entry.right{width:100%; left:0; padding:12px 8px 12px 46px; text-align:left;}
+    .entry.left .dot, .entry.right .dot{left:11px; right:auto;}
+    .part-band{text-align:left; padding-left:8px;}
+    .card{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">A Reader's Chapter Timeline</p>
+  <h1 class="title">I<span>T</span></h1>
+  <p class="byline">by Stephen King · Derry, Maine · 1957 – 1985</p>
+  <p class="sub">Every chapter, the five Derry interludes, and the epilogue — with the highlights of each, drawn straight from the text. Click any card to expand its key moments.</p>
+  <div class="legend">
+    <span><i class="swatch sw-red"></i> Chapter</span>
+    <span><i class="swatch sw-teal"></i> Derry Interlude</span>
+    <span><i class="swatch sw-gold"></i> Epilogue</span>
+  </div>
+  <p class="ornament">✦ ✦ ✦</p>
+</header>
+
+<div class="controls">
+  <label class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5c4a37" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+    <input id="search" type="text" placeholder="Search chapters, characters, events…" autocomplete="off">
+  </label>
+  <div class="filters" id="filters">
+    <span class="chip active" data-era="all">All</span>
+    <span class="chip" data-era="1957">1957</span>
+    <span class="chip" data-era="1958">1958</span>
+    <span class="chip" data-era="1984">1984–85</span>
+    <span class="chip" data-era="history">Derry History</span>
+  </div>
+  <div class="btns">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+  </div>
+</div>
+
+<main>
+  <div class="rail"></div>
+  <div id="timeline"></div>
+  <p class="no-match" id="noMatch">No chapters match your search.</p>
+</main>
+
+<footer>
+  Chapter titles and highlights taken directly from the text of <em>IT</em> by Stephen King.<br>
+  An interactive reference timeline · Parts 1–5, 23 chapters, 5 interludes &amp; epilogue.
+</footer>
+
+<script>
+const DATA = [
+  {part:"PART 1", partTitle:"The Shadow Before", years:"1957 · 1984 · 1985"},
+  {n:"Chapter 1", title:"After the Flood (1957)", set:"1957", era:["1957"], type:"chapter",
+    summary:"Ten-year-old Bill Denbrough, sick in bed, builds a waxed-paper boat for his six-year-old brother George, who sails it down the flooded gutters of Witcham Street. When the boat vanishes into a stormdrain, a clown calling himself Pennywise waits inside — and tears George's arm off, beginning twenty-eight years of terror.",
+    hls:["Bill waterproofs a newspaper boat with paraffin; George braves the dark cellar to fetch the wax.","George chases the boat down the rain-swollen street until it disappears into a stormdrain.","Pennywise the Dancing Clown appears in the drain holding the boat and balloons, conjuring circus smells.","The clown grabs George, its face turning monstrous — \"they float… you'll float too\" — and rips off his arm.","George bleeds to death in the gutter; the chapter follows his lost boat out of Derry \"forever.\""]},
+  {n:"Chapter 2", title:"After the Festival (1984)", set:"1984", era:["1984"], type:"chapter",
+    summary:"During Derry's Canal Days Festival, gay man Adrian Mellon is beaten by three young men and thrown off the Main Street Bridge into the Canal. Both his boyfriend Don Hagarty and one attacker describe a clown beneath the bridge that pulled Adrian from the water — a story the police quietly bury.",
+    hls:["The three attackers (Garton, Dubay, and 15-year-old Unwin) are interrogated separately; Unwin confesses and mentions the clown.","Flashbacks reveal Derry's virulent homophobia and Adrian and Don's life around the gay bar the Falcon.","Provoked by Adrian's I ♥ DERRY hat, the trio beat him on the bridge and throw him over.","Both Hagarty and Unwin describe a Bozo-like clown with silver eyes who took Adrian under the bridge — \"Down here we all float.\"","Garton and Dubay are convicted of manslaughter; at trial, no one mentions the clown."]},
+  {n:"Chapter 3", title:"Six Phone Calls (1985)", set:"1985", era:["1984"], type:"chapter",
+    summary:"Librarian Mike Hanlon — the one who stayed — phones the six scattered members of the childhood Losers' Club to summon them back to Derry, because the killings have begun again and they swore a blood oath to return. Each has buried the memories; the call reopens them all.",
+    hls:["Stanley Uris slits his wrists in the bath and writes \"IT\" in blood on the tile rather than go back.","Richie \"Trashmouth\" Tozier, now an L.A. deejay, agrees to come and is sick as memories of the bullies return.","Ben Hanscom, now a famous architect, gets drunk and shows the \"H\" scar Henry Bowers carved into his belly.","Eddie Kaspbrak leaves his overprotective wife Myra; Beverly Rogan flees her abusive husband Tom.","Bill Denbrough, now a best-selling horror novelist filming in England, resolves to return."]},
+  {n:"Derry: The First Interlude", title:"The First Interlude", set:"Jan 2, 1985 · history to 1741", era:["history"], type:"interlude",
+    summary:"Excerpts from Mike Hanlon's unpublished notebook, \"Derry: An Unauthorized Town History.\" Mike asks whether an entire city can be haunted, connects Adrian Mellon's death to George's, and agonizes over whether the phone calls could get his friends killed.",
+    hls:["Mike meditates on \"haunt\" — including \"a feeding place for animals\" — and asks what feeds on Derry.","He links the recurring roughly-27-year cycle of atrocity: 1876–77, the 1906 Ironworks explosion, the 1930 Black Spot fire, 1957–58.","He recalls the Losers' childhood blood oath, hands clasped and bleeding, to return if It came back.","Advice from 91-year-old ex-librarian Albert Carson steers his research toward reliable local histories.","He learns the original Derrie Company settlers — about 340 people — vanished entirely in 1741."]},
+
+  {part:"PART 2", partTitle:"June of 1958", years:"1958 (framed 1985)"},
+  {n:"Chapter 4", title:"Ben Hanscom Takes a Fall", set:"1958 · framed 1985", era:["1958","1984"], type:"chapter",
+    summary:"Adult Ben flies drunk toward Derry in 1985; the chapter flashes back to the last day of fifth grade, 1958. Because fat, lonely Ben wouldn't let Henry Bowers cheat off his exam, Henry corners him above the Barrens and starts carving his name into Ben's belly — until Ben kicks free and tumbles down the embankment to escape.",
+    hls:["1985: a stewardess fears the glassy-eyed drunk in seat 1-A is dead; Ben has given away his silver dollars.","Ben's refusal to let Henry copy the final exam helps ensure Henry must repeat the grade.","Henry, Victor Criss, and Belch Huggins trap Ben at the railing on Kansas Street.","Henry cuts an \"H\" into Ben's stomach, meaning to carve his whole name.","Ben kicks Henry in the belly, topples over the railing, and slides into the Barrens to escape."]},
+  {n:"Chapter 5", title:"Bill Denbrough Beats the Devil (I)", set:"1958 · framed 1985", era:["1958","1984"], type:"chapter",
+    summary:"Novelist Bill flies home on the Concorde in 1985, realizing all his horror fiction really sprang from Derry and George's murder. The flashback introduces his battered Schwinn bicycle, Silver — junk to look at, but fast as the wind, and destined to save lives that summer.",
+    hls:["Bill decides the real question isn't where his ideas come from but why — and the answer is Derry.","Silver is introduced: a huge, ugly gray Schwinn Bill nearly killed himself learning to ride.","Bill's father Zack has been emotionally absent since George's death; the family is hollowed out.","The narration flags that Silver will save lives twice that summer — outracing horror.","Bill mounts Silver with his cry \"Hi-yo Silver, AWAY!\" and pedals toward the Barrens."]},
+  {n:"Chapter 6", title:"One of the Missing: A Tale from the Summer of '58", set:"1958", era:["1958"], type:"chapter",
+    summary:"The story of a child killed and never explained: ten-year-old Eddie Corcoran. Newspaper clippings reveal his abusive home and the earlier \"accidental\" death of his little brother Dorsey. Rather than face a beating over his report card, Eddie lingers in town — and is lured and killed near the Canal by It.",
+    hls:["Framing line: \"They weren't all found… And from time to time wrong assumptions were made.\"","Derry News clippings report Eddie missing and a court-ordered exhumation of his brother Dorsey.","Dorsey had died in 1957 of multiple fractures; stepfather Macklin claimed a fall from a stepladder.","Chief Borton publicly insists the child murders are not the work of one killer.","Dreading his stepfather, Eddie stays away from home and becomes another of Derry's missing."]},
+  {n:"Chapter 7", title:"The Dam in the Barrens", set:"1958 · framed 1985", era:["1958","1984"], type:"chapter",
+    summary:"Adult Eddie Kaspbrak drives north toward Derry in 1985, remembering how the dam they built first drew the Losers together. In 1958, Ben teaches Bill and Eddie to build a proper dam across the stream — and it works so well it floods part of the Barrens and draws the beat cop, Mr. Nell.",
+    hls:["1985: Eddie recalls that running with Big Bill you \"ran to beat the devil.\"","Ben arrives with scrounged boards, a sledgehammer, and a shovel, boasting he could flood the whole Barrens.","Bill, paler and quieter than usual, mentions he's called Richie, who may bring Stan.","Ben's well-built dam works too well and backs up the water.","The flooding sets up Mr. Nell's arrival to confront the boys."]},
+  {n:"Chapter 8", title:"Georgie's Room and the House on Neibolt Street", set:"1958 · framed 1985", era:["1958","1984"], type:"chapter",
+    summary:"Adult Richie drives into Derry in 1985, struck by pain at the town line. In 1958, Mr. Nell scolds the boys into tearing down the dam; then in dead Georgie's room, a photo album comes alive and the clown bites Bill's fingers. Later, Bill and Richie ride Silver to 29 Neibolt Street and barely escape the Teenage Werewolf.",
+    hls:["Mr. Nell orders the dam torn down; the Losers loyally stand together, and Richie can't stop wisecracking.","In Georgie's room, the photo in his album animates; Bill ends up with cut fingers — \"It was the clown pretending to be Juh-george.\"","At the Aladdin matinee, Henry's gang chases Richie, Ben, and Beverly through town.","At 29 Neibolt Street, a Werewolf in a jacket stitched \"RICHIE TOZIER\" attacks the boys.","Silver saves them — Bill pedals madly, \"racing to beat the devil,\" and they escape onto Route 2."]},
+  {n:"Chapter 9", title:"Cleaning Up", set:"1958 · framed 1985", era:["1958","1984"], type:"chapter",
+    summary:"Beverly's chapter. A voice from her bathroom drain erupts in a gout of blood only she can see; her parents notice nothing. After befriending Ben, Eddie, and Stan, she brings them home — they can all see the blood too, and help her scrub the bathroom clean, proving none of them is crazy.",
+    hls:["The drain-voice, pretending to be dead children, threatens Bill; invisible blood floods the bathroom.","Ben stands up for Beverly against a boy who insults her mother; her joke breaks the tension into laughter.","Ben, Eddie, and Stan can all see the blood; they clean the bathroom and wash the rags — the literal \"cleaning up.\"","Stan recounts the drowned dead boys who beckoned him inside the Derry Standpipe; he escaped by shouting bird names.","Alone again, Beverly feeds the drain her father's tape measure; something seizes it and returns it dripping blood."]},
+  {n:"Derry: The Second Interlude", title:"The Second Interlude", set:"Feb–Mar 1985 · recounts 1930", era:["history"], type:"interlude",
+    summary:"Mike's 1985 notebook weaves in his father Will Hanlon's stories: Will's humiliations as a black soldier around 1930, and the fire at the Black Spot — the black soldiers' club torched by the Legion of White Decency, killing about eighty people.",
+    hls:["Two more children vanish in 1985; Chief Rademacher dismisses Mike and suggests he see a \"head-peeper.\"","Will Hanlon recounts the sadistic Sergeant Wilson and his youth in the segregated army.","The Black Spot's hot Dixieland jazz drew white townsfolk and enraged Derry's elite.","Hooded men torch the club; people are crushed at the single inward-opening door until a truck rams the wall.","Will's deathbed vision: a giant \"floating\" bird with balloons tied to its wings — and Mike wakes to a balloon showing his own screaming face."]},
+
+  {part:"PART 3", partTitle:"Grownups", years:"1985"},
+  {n:"Chapter 10", title:"The Reunion", set:"1985", era:["1984"], type:"chapter",
+    summary:"The six surviving Losers gather for a reunion lunch at the Jade of the Orient. Their childhood memories flood back, Mike lays out the returned killings, and the group votes to honor the old blood oath — just as the meal ends in supernatural horror.",
+    hls:["The five out-of-towners reunite at the Jade of the Orient with Mike hosting; buried 1958 memories resurface.","Ben tells how he transformed from a fat boy into a lean, successful architect.","Mike lays out the evidence: It has awakened on schedule, with nine children already dead.","News confirms Stan's suicide; the others feel the pull of the promise and choose to stay.","The reunion climaxes as the fortune cookies burst open with blood, a bug, an eye, and teeth — seen only by the Losers."]},
+  {n:"Chapter 11", title:"Walking Tours", set:"1985", era:["1984"], type:"chapter",
+    summary:"After lunch each Loser takes a solitary walk through Derry, revisiting childhood places — and each is confronted by It in a personalized manifestation meant to scare them into fleeing. All survive, while Mike works at the library to knit the group and their memories back together.",
+    hls:["Ben returns to the library, where Pennywise appears as a Dracula/mummy figure and he flees.","Eddie, at Tracker Brothers', is attacked by the rotted corpse of Belch Huggins.","Beverly takes tea with kindly old Mrs. Kersh, who transforms into a witch and \"my fadder,\" Robert Gray.","Richie confronts the giant Paul Bunyan statue, which comes alive, and endures an \"All-Dead Rock Show.\"","Bill revisits the storm drain where George died and buys back his childhood bike, Silver, at a secondhand shop."]},
+  {n:"Chapter 12", title:"Three Uninvited Guests", set:"1985", era:["1984"], type:"chapter",
+    summary:"Three dangerous figures converge on Derry, driven by It: Henry Bowers, broken out of the Juniper Hill asylum with supernatural help; Beverly's abusive husband Tom Rogan; and Bill's wife Audra Denbrough. Their journeys set up the final confrontation.",
+    hls:["Henry Bowers hears the moon speak with his dead gang's voices and escapes Juniper Hill.","A Doberman-headed clown and the ghost of Victor Criss aid Henry, killing the guard Koontz.","Tom Rogan beats Beverly's friend Kay McCall to learn where Beverly went, then drives toward Derry.","Audra, worried about Bill, flies from England to Bangor and makes her way toward Derry.","Henry hitchhikes toward Derry, guided by It, to hunt the Losers once more."]},
+  {n:"Derry: The Third Interlude", title:"The Third Interlude", set:"Mar 17, 1985 · recounts Oct 1929", era:["history"], type:"interlude",
+    summary:"From Mike's town history: the October 1929 massacre of the Bradley Gang, which he argues was the \"sacrifice\" that kicked off a cycle of It's activity. Eighty-five-year-old ex-druggist Norbert Keene describes how dozens of ordinary Derry men gunned the whole gang down — and how a clown fired alongside them.",
+    hls:["Mike frames the Bradley Gang execution as the ritual killing that began a murder cycle.","Gun-dealer Lal Machen quietly spread word that the wanted gang would return to his store.","Some fifty to sixty armed townsmen ambushed the two cars, killing the entire gang — including the women.","Authorities took part, yet the paper credited the State Police and FBI; residents just say \"it happened in Derry.\"","Keene saw a clown in overalls firing on the gang — leaning impossibly far out a window, floating, casting no shadow."]},
+
+  {part:"PART 4", partTitle:"July of 1958", years:"1958"},
+  {n:"Chapter 13", title:"The Apocalyptic Rockfight", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"After Henry Bowers poisons Mike Hanlon's dog, the Losers debate It's nature in their Barrens clubhouse. When Henry's gang chases Mike into the gravel-pit, the six Losers rally to his defense in a huge, bloody rockfight — and drive off the bullies. Mike becomes the seventh member, completing the group.",
+    hls:["Henry poisons Mike's dog, Mr. Chips, established through his cruel, racist home life.","The Losers discuss what It is and the possibility of the Ritual of Chüd.","Henry's gang chases Mike Hanlon to the gravel-pit on July 3rd.","The Losers stand together and hurl rocks; the pitched battle bloodies both sides and routs the bullies.","With Mike's arrival, the seven are complete."]},
+  {n:"Chapter 14", title:"The Album", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"Mike joins the Losers and brings his father's photograph album of Derry's history. As the children look, a photo of old Derry comes alive — Pennywise appears across two centuries of pictures and lunges through the surface, nearly taking Bill's fingers.",
+    hls:["Mike is fully integrated into the group and shares his father's historical photo album.","Pennywise/It is spotted recurring in Derry photographs spanning about 200 years.","The album photo animates and the clown attacks through the picture.","The body of another victim, Jimmy Cullum, is among the town's disappearances.","Bill, Ben, and Richie begin library research into silver bullets as a weapon."]},
+  {n:"Chapter 15", title:"The Smoke-Hole", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"Following Ben's design, the Losers hold a Native-American-style \"smoke-hole\" ceremony to induce a shared vision. Beverly insists on being included. Richie and Mike stay down longest and see prehistoric Derry — where It arrives from outside the world as a fiery meteoric impact.",
+    hls:["Ben proposes and builds the smoke-hole ritual to seek visions.","Beverly demands and wins inclusion in the ceremony over the boys' objections.","Richie and Mike are the last to remain in the smoke-filled hole.","They see a vision of prehistoric Derry, \"ago,\" before human settlement.","They witness It coming to Earth from the sky, striking as a burning crater — revealing its ancient, alien origin."]},
+  {n:"Chapter 16", title:"Eddie's Bad Break", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"Pharmacist Mr. Keene reveals to Eddie that his asthma medicine is a placebo — shattering his sense of himself as sick. Soon after, Henry Bowers breaks Eddie's arm outside a market, and Eddie glimpses Pennywise driving the ambulance. The Losers visit him and plan silver ammunition.",
+    hls:["Mr. Keene tells Eddie his asthma medicine is only water and camphor, exposing his mother's manipulation.","Henry Bowers deliberately breaks Eddie's arm outside the Costello Avenue Market.","Eddie sees Pennywise driving the ambulance that takes him away.","The Losers return to the hospital and sign Eddie's cast as a bonding \"contract.\"","The group settles on silver slugs and Bill's Bullseye slingshot, with Beverly as the shooter."]},
+  {n:"Chapter 17", title:"Another One of the Missing: The Death of Patrick Hockstetter", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"The chapter reveals Patrick Hockstetter as a sociopath who smothered his infant brother and tortured animals in a dump refrigerator. Hiding nearby, Beverly witnesses flying leech-creatures drain him, and It — its face running like wax — drags the dying Patrick away to feed.",
+    hls:["Backstory: Patrick murdered his baby brother Avery and kept a refrigerator of suffocated animals.","Beverly hides and witnesses Henry's gang, then Patrick's advance on Henry and Henry's violent threats.","Flying leech-parasites pour from the refrigerator and drain Patrick; Beverly kills one with a Bullseye shot (and is bitten).","It, its face running like wax, says \"Hello and goodbye\" and drags Patrick to a pumping-station.","The Losers later find a blood message; Bill screams defiance at It for killing George."]},
+  {n:"Chapter 18", title:"The Bullseye", set:"July 1958", era:["1958"], type:"chapter",
+    summary:"In Zack Denbrough's workshop, Ben melts down a silver dollar to cast two slugs for Beverly's slingshot. On July 25 the Losers return to 29 Neibolt Street, confront It in a warping funhouse of illusions, and Beverly shoots the Werewolf-form in the face with a silver slug, driving It back into the drains.",
+    hls:["Ben casts two silver slugs from his father's silver dollar.","Stan nearly breaks down in the stretching hallway until Bill restores his faith with the bird book — \"You got your BIRDS.\"","It manifests as the Werewolf in a Derry High jacket marked \"PENNYWISE\" and number 13.","The Werewolf slashes Ben's chest and belly badly.","Beverly shoots It in the snout with a silver slug; It retreats into the drain vowing to kill them all."]},
+  {n:"Derry: The Fourth Interlude", title:"The Fourth Interlude", set:"Apr 6, 1985 · recounts Sept 1905", era:["history"], type:"interlude",
+    summary:"Mike's drunken journal records the September 1905 Silver Dollar massacre: after his friends were murdered by lumber-baron enforcers, union man Claude Heroux axe-murdered several men in the Sleepy Silver Dollar saloon while patrons chatted obliviously — and a clownish figure was seen amid the violence.",
+    hls:["Mike catalogues Derry's buried horrors while drinking alone at night.","Backstory: Claude Heroux's friend Davey Hartwell and others were tortured and killed, bodies tagged \"UNION.\"","Heroux axe-murders Mueller's men in the Silver Dollar while bar patrons ignore the carnage.","A drunken mob lynches Heroux from an elm over the Canal that night.","A witness recalls a \"comical,\" clownish juggler at the scene; Mike concludes It thrives on faith and sleeps about 27 years."]},
+
+  {part:"PART 5", partTitle:"The Ritual of Chüd", years:"1958 & 1985"},
+  {n:"Chapter 19", title:"In the Watches of the Night", set:"1958 & 1985", era:["1958","1984"], type:"chapter",
+    summary:"On the eve of the final confrontation, the timelines cut back and forth. In 1985 the four remaining adults gather their resolve to descend into the sewers again while a wounded Mike keeps watch; in 1958 the children enter the drainpipe to hunt It, even as an It-maddened Henry Bowers pursues them underground.",
+    hls:["The adult Losers regroup in 1985, mourning Stan and worried about the hospitalized Mike.","In 1958 the seven children enter the sewer system at the pumping station to destroy It.","Henry Bowers, made into It's instrument, tracks the children through the tunnels with his knife.","The dual timeline underscores that promises made as children are now being kept as adults."]},
+  {n:"Chapter 20", title:"The Circle Closes", set:"1958 & 1985", era:["1958","1984"], type:"chapter",
+    summary:"The narrative tightens as both the children and the adults close in on It, and the threats converge. The broken \"circle\" of the Losers — thinned by death and distance — is being drawn shut for the final ritual.",
+    hls:["Both timelines advance the pursuit as It marshals its agents against the Losers.","The adult Losers commit fully to re-entering the tunnels, honoring the childhood pact.","Mike, gravely wounded, remains the \"keeper\" who called the others back.","Tension mounts toward the shared destination: the small fairytale door and It's lair beneath the city."]},
+  {n:"Chapter 21", title:"Under the City", set:"1958 & 1985", era:["1958","1984"], type:"chapter",
+    summary:"In a cosmically charged chapter, It narrates its own origin — arriving from the void, opposed by the Turtle, luring victims with the deadlights. In 1958 the children survive manifested horrors to reach It's lair; in 1985 Bill defeats a George-apparition with a tongue-twister, Derry begins to self-destruct, and the five underground Losers psychically save Mike from a hospital-bed assassination.",
+    hls:["It's interlude reveals its nature: an ancient evil from the void, matched only by the Turtle and \"the Other.\"","1958: the Losers repel the Crawling Eye and the giant bird (Stan names real birds he believes in) and reach a three-foot door piled with children's bones.","It kills Victor Criss and Belch Huggins in the tunnels via a Frankenstein-monster form, leaving Henry alone.","1985: Bill beats a George apparition with \"He thrusts his fists against the posts and still insists he sees the ghosts.\"","Derry's destruction begins; Mike survives a syringe attack when the other five \"send him our power,\" and the adults face It's true form — a pregnant Spider."]},
+  {n:"Chapter 22", title:"The Ritual of Chüd", set:"1958 & 1985", era:["1958","1984"], type:"chapter",
+    summary:"The climactic ritual is fought twice. In 1958 Bill engages It mind-to-mind in the void, meets the Turtle, and drives It off wounded. In 1985 the ritual is deadlier: Richie hauls Bill back from the deadlights, and Eddie sacrifices himself — blasting It with his aspirator and losing his arm to its jaws before dying in Beverly's arms.",
+    hls:["1958: Bill is thrown into the void, meets the Turtle, and defeats It by shouting the tongue-twister and reaffirming childish belief.","1985: with the Turtle now dead, Bill is nearly pulled into the deadlights until Richie grabs It's tongue and drags them both back.","Eddie blows out one of It's eyes with his aspirator, but its jaws tear off his arm; he dies telling Richie \"Don't call me Eds.\"","Ben finds and stomps It's trail of eggs, crushing the newborn spiderlings.","1958 interlude: lost in the dark, Beverly reunites the fractured group so Eddie can lead them back out."]},
+  {n:"Chapter 23", title:"Out", set:"1958 & 1985", era:["1958","1984"], type:"chapter",
+    summary:"It is killed for good and the survivors escape as Derry is destroyed. Bill reaches inside the dying Spider and crushes its heart with his bare hands. The four survivors carry the catatonic Audra out of the flooding tunnels into a devastated downtown, and the storm suddenly ends. The chapter closes on the 1958 blood oath.",
+    hls:["Bill kills It by rupturing its heart from the inside; the Voice of the Other affirms \"Son, you did real good.\"","Downtown Derry collapses into the Canal — the Standpipe topples, the Paul Bunyan statue explodes — with 67 dead.","The four survivors escape the flooded tunnels, leaving Eddie's body behind the sealed fairytale door.","Emerging alive, the scars on their palms are gone; they affirm that \"love,\" \"desire,\" and \"friends\" are what last.","1958 closing: at dusk in the Barrens, Stan cuts their palms and the seven swear the blood oath to return."]},
+  {n:"Derry: The Last Interlude", title:"The Last Interlude", set:"June 4–10, 1985", era:["1984"], type:"interlude",
+    summary:"Mike's closing journal entries chronicle the survivors' departures and the onset of a merciful forgetting. As they scatter — Ben and Beverly together, Richie to California, Bill caring for the catatonic Audra — they begin to forget each other and the events, proof that this time It is truly dead.",
+    hls:["Bill moves the unresponsive Audra into Mike's home; the others disperse.","The forgetting begins: Richie can't recall Stan's last name, and the written names in Mike's notebook literally fade.","Mike reads the forgetting as proof It is finally dead — dull panic mixed with \"sneaking relief.\"","Chief Rademacher is killed when the iron tramp-chair falls through the weakened attic floor.","Mike senses Bill has a \"crazy idea\" to save Audra and urges him to act before the last magic departs — \"I loved you so much.\""]},
+  {n:"Epilogue", title:"Bill Denbrough Beats the Devil (II)", set:"1985", era:["1984"], type:"epilogue",
+    summary:"Bill enacts his \"crazy idea\" to save Audra: he dresses in kid's clothes, retrieves Silver, and takes his catatonic wife on a wild ride down the hill through ruined Derry — recreating the childhood magic of speed and belief. Silver hurtles past the crash barriers, and Audra abruptly awakens, restored.",
+    hls:["Bill rides Silver — \"Hi-yo Silver, AWAY!\" — at breakneck speed down Main Street Hill with Audra behind him.","Racing past the crash barriers and the caved-in downtown, the desperate ride works.","Audra wakes, aware and laughing, with no memory of the ordeal; Bill's lifelong stutter disappears for good.","Closing dream-meditations frame the whole novel: \"the circle closes, the wheel rolls.\"","The book ends on love, desire, and the courage to \"be true, be brave, stand.\""]}
+];
+
+const tl = document.getElementById('timeline');
+let entryIndex = 0;
+DATA.forEach(item => {
+  if(item.part){
+    const band = document.createElement('div');
+    band.className = 'part-band';
+    band.innerHTML = `<span class="lbl">${item.part}</span>
+      <div class="pt-title">${item.partTitle}</div>
+      <div class="pt-years">${item.years}</div>`;
+    tl.appendChild(band);
+    return;
+  }
+  const side = (entryIndex % 2 === 0) ? 'left' : 'right';
+  entryIndex++;
+  const el = document.createElement('div');
+  el.className = `entry ${side} ${item.type}`;
+  el.dataset.era = item.era.join(' ');
+  const searchText = (item.n + ' ' + item.title + ' ' + item.summary + ' ' + item.hls.join(' ')).toLowerCase();
+  el.dataset.search = searchText;
+  el.innerHTML = `
+    <div class="dot"></div>
+    <div class="card">
+      <div class="c-num">${item.n}</div>
+      <div class="c-title">${item.title}</div>
+      <span class="c-set">${item.set}</span>
+      <p class="c-summary">${item.summary}</p>
+      <div class="c-detail"><div class="c-detail-inner">
+        <p class="hl-label">Highlights</p>
+        <ul class="hls">${item.hls.map(h=>`<li>${h}</li>`).join('')}</ul>
+      </div></div>
+      <span class="toggle-hint">▸ Show highlights</span>
+    </div>`;
+  tl.appendChild(el);
+});
+
+// expand / collapse
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    card.classList.toggle('open');
+    const hint = card.querySelector('.toggle-hint');
+    hint.textContent = card.classList.contains('open') ? '▾ Hide highlights' : '▸ Show highlights';
+  });
+});
+document.getElementById('expandAll').onclick = ()=>document.querySelectorAll('.card').forEach(c=>{
+  c.classList.add('open'); c.querySelector('.toggle-hint').textContent='▾ Hide highlights';});
+document.getElementById('collapseAll').onclick = ()=>document.querySelectorAll('.card').forEach(c=>{
+  c.classList.remove('open'); c.querySelector('.toggle-hint').textContent='▸ Show highlights';});
+
+// filter + search
+const searchBox = document.getElementById('search');
+const noMatch = document.getElementById('noMatch');
+let activeEra = 'all';
+function applyFilters(){
+  const q = searchBox.value.trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('.entry').forEach(e=>{
+    const eraOk = activeEra === 'all' || e.dataset.era.split(' ').includes(activeEra);
+    const searchOk = !q || e.dataset.search.includes(q);
+    const show = eraOk && searchOk;
+    e.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+  // hide part bands with no visible entries beneath is complex; keep bands always visible unless searching
+  document.querySelectorAll('.part-band').forEach(b=>{
+    b.classList.toggle('hidden', !!q || activeEra!=='all');
+  });
+  noMatch.style.display = visible === 0 ? 'block' : 'none';
+}
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeEra = chip.dataset.era;
+    applyFilters();
+  });
+});
+searchBox.addEventListener('input', applyFilters);
+</script>
+</body>
+</html>
