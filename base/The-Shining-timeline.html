@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A chapter-by-chapter reader's timeline of Stephen King's The Shining, with summaries and highlights.">
+<title>The Shining — Chapter Timeline</title>
+<style>
+  :root {
+    color-scheme: light;
+    --pine-950: #101a16;
+    --pine-900: #17231d;
+    --pine-800: #24362d;
+    --pine-700: #345043;
+    --paper: #f1ead9;
+    --paper-light: #fbf8ef;
+    --paper-deep: #e3d8bf;
+    --ink: #262922;
+    --muted: #6f7168;
+    --wine: #7c292a;
+    --wine-dark: #572122;
+    --brass: #ae8b4e;
+    --line: #c8bda5;
+    --shadow: 0 14px 32px rgba(23, 26, 20, .12);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(177, 147, 86, .11), transparent 54rem),
+      var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  a { color: inherit; }
+  button, input { font: inherit; }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 58px 24px 46px;
+    text-align: center;
+    color: #f3eddd;
+    background:
+      radial-gradient(ellipse at 50% 115%, rgba(157, 49, 47, .32), transparent 43%),
+      linear-gradient(145deg, var(--pine-950), var(--pine-800) 64%, #26372e);
+    border-bottom: 5px solid var(--brass);
+  }
+  .hero::before, .hero::after {
+    content: "";
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border: 1px solid rgba(224, 207, 164, .1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::before { left: -13rem; top: -14rem; box-shadow: 0 0 0 2rem rgba(224,207,164,.025), 0 0 0 4rem rgba(224,207,164,.02); }
+  .hero::after { right: -15rem; bottom: -19rem; }
+  .hero-inner { position: relative; max-width: 920px; margin: 0 auto; z-index: 1; }
+  .overline {
+    margin: 0 0 14px;
+    color: #d6bd83;
+    font: 600 .72rem/1.4 system-ui, sans-serif;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0;
+    font: 700 clamp(3.2rem, 9vw, 6.25rem)/.92 Georgia, "Times New Roman", serif;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
+  }
+  h1 span { color: #c8664c; }
+  .byline {
+    margin: 17px 0 0;
+    color: #e8ddc7;
+    font: italic 600 clamp(1rem, 2.5vw, 1.35rem)/1.4 Georgia, serif;
+  }
+  .intro {
+    max-width: 690px;
+    margin: 18px auto 0;
+    color: #e1d8c6;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 22px;
+    margin-top: 21px;
+    color: #d7cfbc;
+    font: 500 .78rem/1.5 system-ui, sans-serif;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #c8664c;
+    border-radius: 50%;
+  }
+  .legend .epilogue-mark { border-color: #d6bd83; border-radius: 2px; transform: rotate(45deg); }
+  .ornament { margin: 22px 0 0; color: var(--brass); letter-spacing: .8em; font-size: 1rem; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 14px max(18px, calc((100vw - 1160px) / 2));
+    background: rgba(241, 234, 217, .96);
+    border-bottom: 1px solid #d2c6ac;
+    box-shadow: 0 4px 14px rgba(28, 35, 28, .08);
+    backdrop-filter: blur(12px);
+  }
+  .toolbar-inner {
+    max-width: 1160px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto;
+    gap: 11px 16px;
+    align-items: center;
+  }
+  .search-wrap { position: relative; }
+  .search-wrap::before {
+    content: "⌕";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-54%);
+    font: 1.4rem/1 system-ui, sans-serif;
+    color: var(--pine-700);
+  }
+  #search {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 14px 10px 40px;
+    border: 1px solid #c9bda3;
+    border-radius: 3px;
+    background: var(--paper-light);
+    color: var(--ink);
+    font: .9rem/1.35 system-ui, sans-serif;
+  }
+  #search:focus { outline: 3px solid rgba(174, 139, 78, .32); border-color: var(--brass); }
+  .toolbar-actions, .part-links {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .toolbar button, .part-links a {
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1px solid #c9bda3;
+    border-radius: 999px;
+    background: #f8f3e8;
+    color: #3b3e36;
+    text-decoration: none;
+    font: 600 .75rem/1.2 system-ui, sans-serif;
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .toolbar button:hover, .part-links a:hover { background: var(--pine-800); color: white; border-color: var(--pine-800); transform: translateY(-1px); }
+  .toolbar button.primary { color: white; background: var(--wine); border-color: var(--wine); }
+  .toolbar button.primary:hover { background: var(--wine-dark); border-color: var(--wine-dark); }
+  .part-links {
+    grid-column: 1 / -1;
+    justify-content: center;
+    padding-top: 1px;
+  }
+  .part-links a { min-height: 31px; padding: 7px 12px; font-size: .68rem; }
+  .status {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 12px 4px 0;
+    color: var(--muted);
+    text-align: center;
+    font: .72rem/1.4 system-ui, sans-serif;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 42px 22px 70px; }
+  .part-block { scroll-margin-top: 150px; margin-bottom: 54px; }
+  .part-heading { text-align: center; margin: 0 auto 32px; }
+  .part-label {
+    display: inline-block;
+    padding: 7px 13px;
+    background: var(--pine-900);
+    color: #efe5cf;
+    font: 700 .65rem/1.2 system-ui, sans-serif;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .part-heading h2 {
+    margin: 11px 0 4px;
+    color: var(--wine);
+    font: italic 600 clamp(1.55rem, 4vw, 2.15rem)/1.2 Georgia, serif;
+  }
+  .part-heading p {
+    margin: 0;
+    color: #77766d;
+    font: 600 .67rem/1.5 system-ui, sans-serif;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .events { position: relative; }
+  .events::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 3px;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(var(--brass), #c5bba4 88%, transparent);
+  }
+  .entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+    align-items: start;
+    margin: 0 0 24px;
+  }
+  .entry::before {
+    content: "";
+    z-index: 2;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    width: 15px;
+    height: 15px;
+    margin-top: 23px;
+    border: 3px solid var(--wine);
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: 0 0 0 4px rgba(241, 234, 217, .7);
+  }
+  .entry.epilogue::before { border-color: var(--brass); border-radius: 2px; transform: rotate(45deg); }
+  .card {
+    overflow: hidden;
+    grid-row: 1;
+    padding: 20px 21px 18px;
+    border: 1px solid #d2c5aa;
+    border-top: 4px solid var(--wine);
+    background: var(--paper-light);
+    box-shadow: var(--shadow);
+  }
+  .entry.left .card { grid-column: 1; }
+  .entry.right .card { grid-column: 3; }
+  .entry.epilogue .card { border-top-color: var(--brass); }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .chapter-label {
+    color: var(--wine);
+    font: 800 .66rem/1.3 system-ui, sans-serif;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .epilogue .chapter-label { color: #80652f; }
+  .type-label {
+    flex: 0 0 auto;
+    padding: 4px 7px;
+    border: 1px solid #d9ceb8;
+    border-radius: 2px;
+    color: #77766d;
+    font: 700 .58rem/1.2 system-ui, sans-serif;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .card h3 { margin: 0 0 10px; color: #292a24; font: 600 1.33rem/1.2 Georgia, serif; }
+  .summary { margin: 0; font: 1rem/1.55 Georgia, serif; }
+  .highlights { margin-top: 15px; border-top: 1px solid #e0d8c8; }
+  .highlights summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0 0;
+    color: #8d713e;
+    font: 700 .72rem/1.4 system-ui, sans-serif;
+    cursor: pointer;
+    list-style: none;
+  }
+  .highlights summary::-webkit-details-marker { display: none; }
+  .highlights summary::after { content: "+"; font: 1rem/1 system-ui, sans-serif; }
+  .highlights[open] summary::after { content: "−"; }
+  .highlights ul { margin: 10px 0 0; padding: 0 0 0 18px; }
+  .highlights li { margin: 0 0 8px; padding-left: 2px; font: .9rem/1.5 Georgia, serif; }
+  .highlights li::marker { color: var(--wine); }
+  .empty-state {
+    display: none;
+    max-width: 520px;
+    margin: 45px auto;
+    padding: 25px;
+    border: 1px dashed #b7a98d;
+    color: var(--muted);
+    text-align: center;
+    font: 1rem/1.55 Georgia, serif;
+  }
+  .empty-state.visible { display: block; }
+  footer {
+    padding: 25px 22px 34px;
+    background: var(--pine-950);
+    color: #d2cbbd;
+    text-align: center;
+    font: .78rem/1.6 system-ui, sans-serif;
+  }
+  footer p { max-width: 800px; margin: 0 auto; }
+  footer .credit { margin-top: 7px; color: #b4a981; letter-spacing: .08em; }
+  [hidden] { display: none !important; }
+  @media (max-width: 760px) {
+    .hero { padding: 44px 20px 35px; }
+    .toolbar { padding: 11px 14px; }
+    .toolbar-inner { grid-template-columns: 1fr; gap: 9px; }
+    .toolbar-actions { justify-content: center; }
+    .part-links { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 3px 0 5px; }
+    .part-links a { white-space: nowrap; }
+    .status { padding-top: 8px; }
+    main { padding: 34px 15px 50px; }
+    .part-block { scroll-margin-top: 175px; margin-bottom: 43px; }
+    .part-heading { margin-bottom: 24px; }
+    .events::before { left: 17px; }
+    .entry { grid-template-columns: 36px minmax(0, 1fr); margin-bottom: 16px; }
+    .entry::before { grid-column: 1; justify-self: start; margin: 21px 0 0 9px; }
+    .entry.left .card, .entry.right .card { grid-column: 2; }
+    .card { padding: 17px 16px 15px; }
+    .card h3 { font-size: 1.2rem; }
+    .summary { font-size: .97rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="overline">A Reader’s Chapter Timeline</p>
+    <h1>The <span>Shining</span></h1>
+    <p class="byline">by Stephen King · The Overlook Hotel</p>
+    <p class="intro">A winter caretaker’s job becomes a descent into the Overlook’s past and the Torrance family’s most private fears. Each card pairs a short chapter summary with the moments that move the story forward.</p>
+    <div class="legend" aria-label="Timeline key">
+      <span><i aria-hidden="true"></i> Chapter</span>
+      <span><i class="epilogue-mark" aria-hidden="true"></i> Epilogue</span>
+      <span>✦ &nbsp; Five story movements</span>
+    </div>
+    <p class="ornament" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</p>
+  </div>
+</header>
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <label class="search-wrap">
+      <span class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Search chapters, characters, and events</span>
+      <input id="search" type="search" placeholder="Search chapters, characters, events…" autocomplete="off">
+    </label>
+    <div class="toolbar-actions">
+      <button id="expandAll" class="primary" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+    </div>
+    <nav class="part-links" id="partLinks" aria-label="Jump to a story movement"></nav>
+  </div>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+</div>
+<main id="timeline"></main>
+<div class="empty-state" id="emptyState">No chapters match that search. Try a character, place, or chapter title.</div>
+<footer>
+  <p>The supplied text has an empty “Chapter Fifty-Eight” heading immediately before “Epilogue / Summer.” The final card follows the epilogue as the closing entry.</p>
+  <p class="credit">An interactive reader’s guide to <em>The Shining</em> by Stephen King</p>
+</footer>
+<script>
+const parts = [
+  {
+    id: 1, title: "The Winter Job", range: "Chapters 1–13",
+    entries: [
+      { n: 1, title: "Job Interview", summary: "Jack Torrance interviews for the Overlook’s winter caretaker job, carrying the weight of his drinking, his lost teaching post, and the injury he once caused Danny. Manager Stuart Ullman distrusts him, but Jack’s friend Al Shockley has already secured the offer.", bullets: ["Ullman challenges Jack’s fitness for a job that will leave his family isolated for months.", "The hotel’s owners, its troubled history, and the previous caretaker’s murder of his family come up in the interview.", "Jack accepts the position, hoping the quiet winter will give him time to write and rebuild his life."] },
+      { n: 2, title: "Boulder", summary: "In their cramped Boulder apartment, Wendy waits with Danny for Jack and tries to keep the family’s recent failures from crushing them. Danny’s loneliness and his simple question about why his father lost his job bring Wendy’s worry about the future into focus.", bullets: ["Money is tight after Jack’s dismissal, and the family’s move has unsettled Danny.", "Wendy remembers the drinking and the accident that left Danny’s arm broken.", "She still loves Jack, but fears that another bad turn could hurt their son again."] },
+      { n: 3, title: "Watson", summary: "Maintenance man Watson shows Jack the Overlook’s boiler, basement, and neglected records. As Jack learns the routine that will keep the hotel alive through winter, the story of the last caretaker’s killing spree shadows the tour and stirs Jack’s fear of his own temper.", bullets: ["Watson explains the boiler’s pressure and the need to check and release it regularly.", "The basement is packed with the hotel’s old records and remnants of its past.", "Jack hears how caretaker Grady killed his wife and daughters before taking his own life."] },
+      { n: 4, title: "Shadowland", summary: "While Wendy and Jack are away, Danny waits outside for his father and slips into a frightening vision of the Overlook. His invisible guide Tony sends images and the word REDRUM, leaving Danny afraid that the job will bring the danger he has already glimpsed.", bullets: ["Danny’s anxious waiting exposes how much he depends on his parents’ attention and reassurance.", "Tony’s vision shows Danny a hotel, a pursuing figure, and the word REDRUM.", "Jack’s return briefly restores the family’s warmth, but Danny’s fear stays with him."] },
+      { n: 5, title: "Phonebooth", summary: "Jack makes a private call that leads back to the accident he caused while drinking with Al Shockley. The memory shows how close Jack came to losing everything, and how Al helped him escape the consequences and reach the Overlook job.", bullets: ["Jack’s call brings the events around his firing and the caretaker offer back into view.", "A drunken drive with Al ends with their car striking an abandoned bicycle in the road.", "The wreck and Jack’s shame deepen the contrast between his promises to change and his past behavior."] },
+      { n: 6, title: "Night Thoughts", summary: "Wendy lies awake beside Jack and measures her love against years of disappointment and fear. She thinks through the damage his drinking and anger have done, but also the family life she still wants them to recover.", bullets: ["Wendy revisits the marriage’s early hopes and the strain that followed Jack’s drinking.", "Danny’s broken arm remains the moment she cannot forget or excuse.", "She decides to give the Overlook job a chance because she wants Jack and Danny to be a family again."] },
+      { n: 7, title: "In Another Bedroom", summary: "Danny wakes from a nightmare to an ordinary, silent street, but the shadows outside still feel alive. Tony’s warning and REDRUM return as Danny tries to understand what may be waiting for him.", bullets: ["The dream repeats the voice and threat Danny associates with his father’s anger.", "Tony appears only briefly, leaving Danny unsure whether the warning is real or imagined.", "The red word ends the night as a private terror Danny cannot yet explain."] },
+      { n: 8, title: "A View of the Overlook", summary: "The Torrances drive through the mountains toward their new home. Danny recognizes the Overlook from his visions; when the hotel finally comes into view, the boy is overcome by the feeling that the danger Tony showed him is real.", bullets: ["The family’s old car struggles up the mountain road as winter closes in.", "Jack points out the hotel and the surrounding grounds, while Wendy tries to stay optimistic.", "Danny connects the real Overlook with the dark place from his vision and keeps quiet."] },
+      { n: 9, title: "Checking It Out", summary: "Ullman welcomes the Torrances and shows them the hotel before the season ends. Jack and Wendy are charmed by the grounds and the view, while Danny notices details that make the place feel less safe than his parents believe.", bullets: ["Ullman gives the family a tour of the hotel and its rooms before departing guests leave.", "The Overlook’s size, glamour, and isolation impress Jack and Wendy.", "Danny watches the place closely and remembers Tony’s warning not to trust what he sees."] },
+      { n: 10, title: "Hallorann", summary: "Cook Dick Hallorann takes Wendy through the kitchen stores and quickly senses the unusual connection between Danny and himself. He recognizes Danny’s gift, calls it “the shining,” and gives the boy a way to reach him if the hotel becomes dangerous.", bullets: ["Hallorann and Danny discover that they can communicate mind to mind.", "Hallorann tells Danny that other people have the same kind of shining, though Danny’s is unusually strong.", "He warns Danny away from Room 217 and promises to come if Danny sends a clear call for help."] },
+      { n: 11, title: "The Shining", summary: "As Hallorann prepares to leave, Danny asks what his visions mean and whether the Overlook can hurt him. Hallorann reassures him as best he can, but the cook’s own experience with Room 217 leaves him uneasy about the hotel.", bullets: ["Danny struggles to explain Tony, the images, and the frightening word he keeps seeing.", "Hallorann urges Danny to shut his eyes to visions that frighten him and to call for help if he needs it.", "Hallorann’s private memory of the hotel’s bathroom ghost makes him doubt his own reassurance."] },
+      { n: 12, title: "The Grand Tour", summary: "Ullman leads the family through the Overlook’s rooms and long corridors as the staff and guests prepare to leave. Danny sees signs of the hotel’s hidden violence that his parents cannot, and feels the loneliness of the coming winter settle in.", bullets: ["The tour takes the Torrances through guest suites, the ballroom, and the hotel’s maze-like halls.", "Danny glimpses disturbing images and keeps them to himself so he will not spoil his parents’ happiness.", "The staff begin their final preparations to close the hotel for the season."] },
+      { n: 13, title: "The Front Porch", summary: "Ullman and the last hotel staff depart, leaving the Torrances alone with the Overlook. Jack tries to treat the handover as a new beginning, but the hotel and its empty grounds already seem to dwarf the family.", bullets: ["Ullman reviews Jack’s responsibilities one last time, especially the boiler.", "The departing manager asks Jack to take care of the hotel until spring.", "After Ullman leaves, the family stands together and realizes how completely alone they are."] }
+    ]
+  },
+  {
+    id: 2, title: "The Hotel Wakes", range: "Chapters 14–25",
+    entries: [
+      { n: 14, title: "Up on the Roof", summary: "Jack finds a wasp nest while working on the roof and is stung. The incident throws him back toward the anger he has tried to control, but he turns the nest into a test of his nerve and tells himself he is learning to master his reactions.", bullets: ["Jack discovers a large nest near the roof access and must escape without falling.", "The wasps bring back memories of losing his temper with student George Hatfield.", "He kills the nest and convinces himself the experience proves he is getting better."] },
+      { n: 15, title: "Down in the Front Yard", summary: "The Torrances enjoy a rare, affectionate afternoon together. Jack brings down the treated wasp nest as a curiosity for Danny, but one surviving wasp turns the joke into a warning that the hotel’s dangers have not been cleared away.", bullets: ["Wendy and Jack share a hopeful moment about their marriage and the life they want to rebuild.", "Jack gives Danny the nest after using an insecticide on it.", "A wasp survives and stings Danny, puncturing the family’s brief sense of safety."] },
+      { n: 16, title: "Danny", summary: "The wasp sting is followed by a frightening spell in which Danny sees and knows things he cannot explain. Jack’s concern turns sharply into anger before he catches himself, and the episode makes him wonder whether the Overlook is beginning to affect them.", bullets: ["Danny falls into a trance and speaks with knowledge that seems beyond his age.", "Jack snaps at him, then feels ashamed and tries to comfort him.", "The wasps return despite Jack’s efforts, and the hotel begins to feel hostile to him."] },
+      { n: 17, title: "The Doctor’s Office", summary: "Dr. Edmonds examines Danny and finds no physical cause for the boy’s spells. The adults discuss Tony and Danny’s unusual perceptions, but the doctor reads them as an overactive imagination and leaves the family without a clear explanation.", bullets: ["An EEG and medical exam reveal no obvious illness behind Danny’s episodes.", "Danny enters a trance at the doctor’s request and speaks about Tony.", "Edmonds recognizes Danny’s intelligence but doubts that anything supernatural is happening."] },
+      { n: 18, title: "The Scrapbook", summary: "Jack discovers a scrapbook of clippings and records in the basement. The hotel’s glamorous public story gives way to scandals, suspicious deaths, and financial ruin, but Jack’s fascination with the material soon becomes an obsession he hides from Wendy.", bullets: ["The scrapbook traces the Overlook through owners, bankruptcies, and newspaper scandals.", "Jack finds evidence of violence and corruption buried beneath the hotel’s polished history.", "He begins imagining a book about the Overlook and keeps returning to the scrapbook in secret."] },
+      { n: 19, title: "Outside 217", summary: "Danny is drawn toward Room 217 despite Hallorann’s warning. He does not enter, but the hotel makes the corridor frightening enough to test his promise, and a seemingly ordinary fire hose becomes a threat that sends him running.", bullets: ["Danny approaches the forbidden room with the passkey in his pocket.", "He argues with himself about whether his promise to Hallorann still matters.", "The fire hose appears to move, and Danny flees without opening the door."] },
+      { n: 20, title: "Talking to Mr. Ullman", summary: "Jack researches the Overlook’s history in town and confronts Ullman about what he was not told. The argument exposes Jack’s pride and his growing mistrust, but he leaves with his family and returns to the hotel rather than walk away.", bullets: ["Jack searches local newspaper archives for the hotel’s hidden past.", "He calls Ullman and accuses him of withholding important information.", "After the confrontation, Jack wonders whether leaving might still be possible, then drives back with Wendy and Danny."] },
+      { n: 21, title: "Night Thoughts", summary: "The family lies awake with its own fears: Jack wrestles with the phone call and his resentment, Wendy wonders whether the job is worth the risk, and Danny tries to make sense of REDRUM. Their worries gather as the storm season approaches.", bullets: ["Jack’s call to Ullman leaves him feeling humiliated and angry.", "Wendy senses that Jack and Danny are keeping parts of their experience from her.", "Danny resolves to ask Tony what REDRUM means, even if the answer brings more frightening visions."] },
+      { n: 22, title: "In the Truck", summary: "Wendy drives Danny toward Sidewinder on an errand that could become a chance to leave. Danny reads Jack’s divided thoughts from a distance; Wendy listens, then chooses to return to the Overlook when Danny says he wants to stay with his father.", bullets: ["Wendy weighs taking Danny away while Jack remains at the hotel.", "Danny describes Jack’s mixed feelings: he loves them, but is drawn to the Overlook and fears losing the job.", "Wendy turns the truck back after Danny begs not to be taken away from his father."] },
+      { n: 23, title: "In the Playground", summary: "Alone outside, Jack trims the topiary animals and suddenly believes they are moving toward him. The vision vanishes when he looks again, and he dismisses it as exhaustion, choosing not to tell Wendy what happened.", bullets: ["Jack works among the hedge animals as snow clouds gather.", "He senses that the shapes have shifted and that the animals are closing in.", "When the grounds appear still again, he blames stress and keeps the episode to himself."] },
+      { n: 24, title: "Snow", summary: "The first serious snowstorm settles over the Overlook and closes the road. The Torrances feel a moment of relief that the decision to stay is now out of their hands, while the hotel is sealed in with them.", bullets: ["Snow buries the grounds, hedge animals, and driveway.", "The family watches the storm from the porch, physically together but inwardly uneasy.", "The Overlook is cut off from the outside world for the winter."] },
+      { n: 25, title: "Inside 217", summary: "Danny finally opens Room 217 and encounters the dead woman Hallorann warned him about. She attacks him in the bathroom; Hallorann’s voice reaches him through the shining and helps him escape, but Danny comes away with bruises around his throat.", bullets: ["Danny uses the passkey to enter Room 217 after being drawn inside by his curiosity.", "The dead woman in the bathtub grabs and chokes him.", "Hallorann reaches Danny mentally, and the boy escapes with clear marks of the encounter."] }
+    ]
+  },
+  {
+    id: 3, title: "The Family Fractures", range: "Chapters 26–38",
+    entries: [
+      { n: 26, title: "Dreamland", summary: "Jack sleeps badly and relives the cruelty of his own father, including a beating that scarred his family. He wakes furious and smashes the hotel’s CB radio, cutting off another way to call for help.", bullets: ["Jack’s dream returns him to childhood and his father’s violence.", "The Overlook blurs Jack’s memories with its own history of harm.", "In a burst of anger, Jack destroys the CB radio and leaves the family with fewer ways to reach the outside."] },
+      { n: 27, title: "Catatonic", summary: "Wendy finds Danny unresponsive and sees the bruises on his neck. She fears Jack may have hurt him during one of his blackouts, while Jack cannot account for what happened; the family’s fragile trust breaks further.", bullets: ["Wendy discovers Danny standing in a trance, unable to answer or respond normally.", "The marks on Danny’s throat make Wendy suspect Jack.", "Jack insists he does not remember hurting Danny, but Wendy takes the boy away from him."] },
+      { n: 28, title: "It Was Her!", summary: "Wendy investigates Room 217 and experiences the bathroom horror for herself. At the same time, Jack retreats to the Colorado Lounge, where the ghostly bartender Lloyd offers him the comfort of an imaginary drink and the hotel’s grip tightens.", bullets: ["Wendy enters Room 217 and is confronted by the woman Danny described.", "Jack sees Lloyd behind the bar and accepts the fantasy of being served.", "Danny runs to Jack in terror, insisting the woman in the room attacked him."] },
+      { n: 29, title: "Kitchen Talk", summary: "Jack listens as Danny explains the attack and reveals how much he knows through the shining. Wendy begs Jack not to go upstairs, but he insists on checking Room 217 himself, pulled by his caretaker duty and the hotel’s challenge.", bullets: ["Danny identifies the dead woman in Room 217 as the one who strangled him.", "Wendy and Jack acknowledge that Danny’s gift may be real.", "Jack leaves for Room 217 despite Wendy’s pleas to stay with them."] },
+      { n: 30, title: "217 Revisited", summary: "Jack goes into Room 217 alone. He finds no body and no obvious proof of Danny’s story, but small details feel wrong; by the time he leaves, he is frightened enough to avoid admitting what he saw.", bullets: ["Jack takes the elevator to the second floor and enters the room.", "The bathroom appears empty, but the smell of soap and the room’s arrangement unsettle him.", "A shifting fire hose in the corridor shakes Jack’s confidence in his own explanation."] },
+      { n: 31, title: "The Verdict", summary: "Jack returns to Wendy and Danny and declares that Room 217 is empty. His brisk reassurance hides his fear, and he wants a drink more than he wants to keep examining what the hotel has shown him.", bullets: ["Jack tells Wendy and Danny that he found nothing in the room.", "The family is visibly relieved, but Jack’s cheerfulness feels forced.", "He privately admits he has never wanted a drink more badly."] },
+      { n: 32, title: "The Bedroom", summary: "As the family tries to sleep, Jack’s writing collapses and his mind turns against him. He dreams of striking Danny with a roque mallet, then wakes horrified by the possibility that the hotel could make him repeat his father’s violence.", bullets: ["Jack can no longer make progress on his play and begins to doubt his work.", "He and Wendy discuss whether Danny’s visions can be explained by the mind and body.", "A nightmare puts Danny beneath Jack’s raised mallet, and Jack wakes promising himself he will never hurt his son."] },
+      { n: 33, title: "The Snowmobile", summary: "Jack finds the hotel’s snowmobile and briefly sees it as a way out. He changes his mind, removes its magneto, and throws the part into the snow, making escape impossible while telling himself the decision is reasonable.", bullets: ["Jack discovers the snowmobile in the equipment shed.", "He imagines taking Wendy and Danny down the mountain, then argues himself out of it.", "Jack throws the magneto away and decides the family will stay."] },
+      { n: 34, title: "The Hedges", summary: "Danny goes out to play and is chased by the Overlook’s topiary animals. He escapes with scratches and snow in his clothes, but the experience confirms that the dangers he sees can reach him even when his parents cannot.", bullets: ["Danny tries to play near the snow-covered hedge animals.", "The lion and other shapes seem to move after him and drive him toward the playground.", "Jack and Wendy find him shaken and scratched, and Danny cannot make his father accept what happened."] },
+      { n: 35, title: "The Lobby", summary: "Jack comforts Danny but insists the attack was only a dream. Wendy notices that Jack understands more than he admits, and each parent recognizes that pretending the danger is over will not protect their son.", bullets: ["Jack tells Danny the hedge animals were a hallucination.", "Danny points out that the snow could not have caused his scratches.", "Wendy sees Jack’s fear and denial, and the couple’s argument turns into a quiet admission that the danger remains."] },
+      { n: 36, title: "The Elevator", summary: "In the middle of the night the hotel elevator starts running by itself. Wendy, Jack, and Danny hear the car rise and descend, then discover party debris in the corridor: the Overlook is replaying one of its old celebrations.", bullets: ["The elevator moves despite the hotel’s empty halls.", "The family listens to what sounds like guests inside the car.", "Confetti and a party mask appear outside the Torrances’ rooms after the elevator stops."] },
+      { n: 37, title: "The Ballroom", summary: "Danny winds the ballroom clock and is swept into a vision of the Overlook’s masked guests and violent past. Terrified, he sends a desperate mental call to Hallorann, knowing the hotel is getting stronger.", bullets: ["Danny enters the ballroom and studies the clock that marks time in the hotel.", "His vision fills the room with partygoers and hints of an old crime.", "Danny calls Hallorann through the shining for help."] },
+      { n: 38, title: "Florida", summary: "Hallorann receives Danny’s call while working in Florida and abandons his plans to return to the Overlook. A missed flight, bad luck, and winter travel delays complicate the trip, but he keeps pushing toward Colorado.", bullets: ["Danny’s cry reaches Hallorann while he is away from the hotel.", "Hallorann quits his job and starts arranging a return to the Torrances.", "A chain of delays and mishaps slows him down, but he remains determined to reach Danny."] }
+    ]
+  },
+  {
+    id: 4, title: "The Overlook Takes Hold", range: "Chapters 39–48",
+    entries: [
+      { n: 39, title: "On the Stairs", summary: "Danny tells Wendy what the hotel is doing to Jack and why he has been calling Hallorann. Wendy prepares to protect her son, while Jack’s imagined party guests and drunken rage make the danger impossible to ignore.", bullets: ["Danny says Jack has thrown away the snowmobile’s magneto and may be yielding to the hotel.", "He explains that he has been trying to reach Hallorann through the shining.", "Wendy keeps a butcher knife close as the Overlook’s party sounds return around them."] },
+      { n: 40, title: "In the Basement", summary: "Jack loses track of the boiler while searching the hotel’s records, then rushes to dump it before it explodes. Having saved the Overlook from the danger he created, he feels entitled to a reward and follows the promise of a drink upstairs.", bullets: ["Jack spends the night among old papers and nearly lets the boiler pressure climb too far.", "He releases the pressure in time and avoids an explosion.", "The hotel offers him liquor, and Jack accepts the reward as if the Overlook owes him."] },
+      { n: 41, title: "Daylight", summary: "Danny wakes from another vision of fire and encounters a costumed guest who threatens him in the corridor. The hotel folds his fear of the party into his fear of his father, leaving Danny certain that it will not let him reach Hallorann easily.", bullets: ["Danny dreams that the Overlook burns and that Jack is caught in the flames.", "A dog-masked partygoer corners Danny and threatens him.", "Danny wakes screaming for his father and realizes they are still cut off from help."] },
+      { n: 42, title: "Mid-Air", summary: "Hallorann flies toward Denver as the storm deepens. Even at a distance he feels Danny’s terror, but the connection fades and the journey still has a long way to go.", bullets: ["Hallorann boards a flight west after the first attempt to reach Colorado fails.", "He senses the danger surrounding Danny while he is still far away.", "The aircraft presses through bad weather toward Denver and the difficult road ahead."] },
+      { n: 43, title: "Drinks on the House", summary: "Jack enters the Colorado Lounge and finds the hotel’s past alive around him. Lloyd serves him drinks, and the Overlook begins persuading Jack that he belongs there and that Danny’s shining is something the hotel should possess.", bullets: ["The Colorado Lounge fills with the illusion of the hotel’s former life.", "Jack accepts a drink from Lloyd despite his commitment to sobriety.", "The hotel’s unseen manager turns Jack’s attention toward Danny and his gift."] },
+      { n: 44, title: "Conversations at the Party", summary: "Jack loses himself in an endless Overlook party. Delbert Grady and the other guests flatter and provoke him, convincing him that his family is the obstacle and that he must punish Danny for trying to bring help.", bullets: ["Jack dances and drinks among the guests of a party that should not exist.", "Grady tells Jack that Wendy and Danny are disloyal and must be brought under control.", "The night ends with Jack alone, drunk, and fully under the hotel’s influence."] },
+      { n: 45, title: "Stapleton Airport, Denver", summary: "Hallorann lands in Denver and sets off by car toward the Overlook. The roads are worsening, the weather is dangerous, and each delay makes him fear he may not reach Danny in time.", bullets: ["Hallorann’s plane lands in the snowbound Denver area.", "He rents a car and starts north toward the mountain roads.", "Worsening weather and closed routes turn the rescue trip into a struggle."] },
+      { n: 46, title: "Wendy", summary: "Wendy finds Jack transformed by the Overlook and fights him when he turns on her. Though badly hurt, she manages to lock him in the pantry and get Danny away from him.", bullets: ["Jack accuses Wendy of turning Danny against him and tries to attack her.", "Wendy uses the kitchen knife to defend herself and injures Jack.", "She gets Danny to safety and traps Jack behind the pantry door."] },
+      { n: 47, title: "Danny", summary: "Wendy and Danny hide while Jack rages behind the pantry door. The boy tries to comfort his mother, but the hotel’s elevator and party sounds start up again, warning them that the threat has not been contained.", bullets: ["Jack shouts and batters at the pantry door from inside.", "Wendy reassures Danny that Hallorann or another rescuer will reach them after the storm.", "The elevator and unseen party guests return as the Overlook wakes around them."] },
+      { n: 48, title: "Jack", summary: "Alone in the pantry, Jack tries to recover and plan his escape. The hotel releases him and supplies a roque mallet; a voice from the Overlook tells him to keep his promise, and Jack sets out to find Danny.", bullets: ["Jack wakes bruised and hungover in the pantry, furious at Wendy.", "The pantry door opens and the hotel’s apparitions return.", "A roque mallet and an imagined drink wait for Jack, who accepts the hotel’s command."] }
+    ]
+  },
+  {
+    id: 5, title: "The Last Night", range: "Chapters 49–57",
+    entries: [
+      { n: 49, title: "Hallorann, Going Up the Country", summary: "Hallorann’s drive through the mountain storm turns into a slow struggle against snowbound roads and bad visibility. He presses on toward Sidewinder and the Overlook, worried that Danny’s call may have come too late.", bullets: ["Hallorann’s rental car slides off the road, and he has to fight his way back onto the route.", "Drivers warn him that the pass and the road to the Overlook are closing under deep drifts.", "He keeps moving through the storm, haunted by the thought that Danny may already be beyond help."] },
+      { n: 50, title: "Redrum", summary: "Wendy goes downstairs and finds Jack loose with a roque mallet. He attacks her through the hotel, and she is badly injured as she struggles to get away and reach Danny.", bullets: ["Wendy leaves Danny sleeping and goes down to look for food and medicine.", "She discovers Jack with the mallet and realizes the Overlook has freed him.", "Jack pursues Wendy up the stairs, striking her and leaving her wounded."] },
+      { n: 51, title: "Hallorann Arrives", summary: "Hallorann reaches Sidewinder and borrows a snowmobile for the final climb to the Overlook. The hotel’s hedge lion attacks him near the grounds, while Jack searches the upper floors for Danny.", bullets: ["Hallorann secures a snowmobile and rides through the storm toward the hotel.", "The topiary lion ambushes him near the Overlook and leaves him badly hurt.", "Jack enters the upper floors with the mallet, looking for his son."] },
+      { n: 52, title: "Wendy and Jack", summary: "Wendy drags herself through the hotel as Jack follows with the mallet. She reaches the family’s rooms and tries to find Danny, but her injuries leave her barely able to move before Jack breaks through.", bullets: ["Jack follows Wendy up the stairs and through the upper corridors.", "Wendy hides and searches for Danny while trying to keep ahead of Jack.", "Jack smashes through a door, and Wendy collapses from her injuries."] },
+      { n: 53, title: "Hallorann Laid Low", summary: "Hallorann gets inside the Overlook and makes his way toward Wendy and Danny, but Jack strikes him down with the mallet. With Hallorann incapacitated, Jack continues his hunt for Danny alone.", bullets: ["Hallorann reaches the hotel after surviving the hedge lion.", "Jack catches him and beats him with the mallet, leaving him badly hurt.", "Jack climbs toward the third floor, certain Danny is somewhere above him."] },
+      { n: 54, title: "Tony", summary: "Danny flees through a distorted version of the hotel and finds Tony at the center of it. Tony reveals that he is a future part of Danny himself, then helps Danny face Jack and the Overlook’s attempt to possess him.", bullets: ["Danny runs through huge, shifting hallways while Jack closes in.", "Tony explains that he is connected to Danny’s future self.", "Danny uses his courage and the knowledge Tony gives him to confront the hotel’s control."] },
+      { n: 55, title: "That Which Was Forgotten", summary: "Wendy and Hallorann struggle to recover while Jack corners Danny. Danny reminds Jack that the boiler has been forgotten; the possessed caretaker suddenly turns back toward the basement, giving Danny a chance to get away.", bullets: ["Wendy wakes badly injured and finds Hallorann nearby.", "Danny faces Jack and tells him that the boiler has been left unchecked.", "The Overlook’s hold on Jack breaks long enough for Danny to escape as the boiler becomes critical."] },
+      { n: 56, title: "The Explosion", summary: "The hotel tries to save itself by sending Jack to the boiler, but the pressure has gone too far. The Overlook explodes and burns, destroying the building and the force that has been directing Jack.", bullets: ["The boiler pressure reaches a dangerous point in the basement.", "Jack and the Overlook’s presence are consumed in the explosion.", "Fire tears through the hotel as the apparitions and the party vanish."] },
+      { n: 57, title: "Exit", summary: "Danny, Wendy, and Hallorann escape the burning Overlook into the storm. The hedge animals thrash and collapse as the hotel is destroyed; the three survivors set off down the mountain and meet the rescue party on the road.", bullets: ["The Overlook’s destruction scatters the remaining supernatural threat.", "Hallorann helps the injured Wendy and Danny leave the grounds on the snowmobile.", "Near Sidewinder, they meet the rescuers coming up the mountain, and the long night ends."] }
+    ]
+  },
+  {
+    id: 6, title: "After the Overlook", range: "Epilogue",
+    entries: [
+      { n: 58, title: "Epilogue / Summer", kind: "epilogue", summary: "Months later, Wendy and Danny are staying at a lakeside lodge while Wendy recovers and Hallorann looks after them. They begin making plans for a new life, but Danny still grieves his father and must learn how to live with the shining and the memories.", bullets: ["Wendy accepts a new job and plans to move with Danny once she has recovered.", "Danny tells Hallorann that he misses Jack and feels responsible for what happened.", "Hallorann reassures Danny that grief will take time and promises to remain his friend."] }
+    ]
+  }
+];
+const timeline = document.getElementById("timeline");
+const partLinks = document.getElementById("partLinks");
+const search = document.getElementById("search");
+const status = document.getElementById("status");
+const emptyState = document.getElementById("emptyState");
+const totalEntries = parts.reduce((sum, part) => sum + part.entries.length, 0);
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, function (ch) {
+    return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch];
+  });
+}
+function render() {
+  parts.forEach(function (part) {
+    const block = document.createElement("section");
+    block.className = "part-block";
+    block.id = "part-" + part.id;
+    block.innerHTML = '<header class="part-heading"><span class="part-label">Part ' + part.id + '</span><h2>' + escapeHtml(part.title) + '</h2><p>' + escapeHtml(part.range) + '</p></header><div class="events"></div>';
+    const events = block.querySelector(".events");
+    part.entries.forEach(function (entry, index) {
+      const article = document.createElement("article");
+      article.className = "entry " + (index % 2 === 0 ? "left" : "right") + (entry.kind === "epilogue" ? " epilogue" : "");
+      article.dataset.search = [entry.n, entry.title, entry.summary].concat(entry.bullets).join(" ").toLocaleLowerCase();
+      const label = entry.kind === "epilogue" ? "Epilogue" : "Chapter " + entry.n;
+      const typeLabel = entry.kind === "epilogue" ? "Closing entry" : "Chapter";
+      article.innerHTML =
+        '<div class="card">' +
+          '<div class="card-top"><span class="chapter-label">' + escapeHtml(label) + '</span><span class="type-label">' + escapeHtml(typeLabel) + '</span></div>' +
+          '<h3>' + escapeHtml(entry.title) + '</h3>' +
+          '<p class="summary">' + escapeHtml(entry.summary) + '</p>' +
+          '<details class="highlights"><summary><span>Show highlights</span></summary><ul>' +
+            entry.bullets.map(function (item) { return '<li>' + escapeHtml(item) + '</li>'; }).join("") +
+          '</ul></details>' +
+        '</div>';
+      events.appendChild(article);
+    });
+    timeline.appendChild(block);
+    const link = document.createElement("a");
+    link.href = "#" + block.id;
+    link.textContent = "Part " + part.id;
+    link.setAttribute("aria-label", "Jump to Part " + part.id + ": " + part.title);
+    partLinks.appendChild(link);
+  });
+}
+function applySearch() {
+  const query = search.value.trim().toLocaleLowerCase();
+  let visible = 0;
+  parts.forEach(function (part) {
+    const block = document.getElementById("part-" + part.id);
+    let inPart = 0;
+    block.querySelectorAll(".entry").forEach(function (entry) {
+      const match = !query || entry.dataset.search.includes(query);
+      entry.hidden = !match;
+      if (match) { inPart += 1; visible += 1; }
+    });
+    block.hidden = inPart === 0;
+  });
+  emptyState.classList.toggle("visible", visible === 0);
+  status.textContent = query ? "Showing " + visible + " of " + totalEntries + " entries" : totalEntries + " entries · five story movements and an epilogue";
+}
+render();
+applySearch();
+search.addEventListener("input", applySearch);
+document.getElementById("expandAll").addEventListener("click", function () {
+  document.querySelectorAll(".entry:not([hidden]) details").forEach(function (item) { item.open = true; });
+});
+document.getElementById("collapseAll").addEventListener("click", function () {
+  document.querySelectorAll(".entry details").forEach(function (item) { item.open = false; });
+});
+</script>
+</body>
+</html>
